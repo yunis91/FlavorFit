@@ -110,8 +110,8 @@ export class AuthService {
 
         response.cookie(this.REFRESH_TOKEN_NAME, token || '', {
             httpOnly: true,
-            // domain: configService.get<string>("COOKIE_DOMAIN")
-            domain: 'localhost',
+            domain: this.configService.get<string>("COOKIE_DOMAIN"),
+            // domain: 'localhost',
             expires: expiresIn,
             sameSite: isDev(this.configService) ? 'none' : 'strict',
             secure: true
