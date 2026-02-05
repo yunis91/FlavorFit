@@ -9,9 +9,9 @@ import { hash, verify } from 'argon2'
 import { Response } from 'express'
 import { PrismaService } from 'src/prisma/prisma.service'
 import { UsersService } from 'src/users/users.service'
+import { isDev } from 'src/utils/is-dev.util'
 import { AuthInput } from './auth.input'
 import { IAuthTokenData } from './auth.interface'
-import {isDev} from "../utils/is-dev.util";
 
 @Injectable()
 export class AuthService {
@@ -71,6 +71,28 @@ export class AuthService {
         return {user, ...tokens}
     }
 
+    async getNewTokens(refreshToken: string) {
+        const result =
+            await this.jwt.verifyAsync<Pick<IAuthTokenData, 'id'>>(refreshToken)
+        if (!result) throw new BadRequestException('Invalid refresh token')
+
+        const user = await this.userService.findById(result.id)
+
+        if (!user) {
+            throw new NotFoundException('User not found')
+        }
+
+        const tokens = this.generateTokens({
+            id: user.id,
+            role: user.role
+        })
+
+        return {
+            user,
+            ...tokens
+        }
+    }
+
     private async validateUser(input: AuthInput){
         const email = input.email
 
@@ -110,8 +132,8 @@ export class AuthService {
 
         response.cookie(this.REFRESH_TOKEN_NAME, token || '', {
             httpOnly: true,
-            domain: this.configService.get<string>("COOKIE_DOMAIN"),
-            // domain: 'localhost',
+            // domain: this.configService.get<string>("COOKIE_DOMAIN"),
+            domain: 'localhost',
             expires: expiresIn,
             sameSite: isDev(this.configService) ? 'none' : 'strict',
             secure: true
