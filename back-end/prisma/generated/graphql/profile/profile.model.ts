@@ -20,8 +20,8 @@ export class Profile {
     @Field(() => Int, {nullable:true})
     age!: number | null;
 
-    @Field(() => String, {nullable:false})
-    bio!: string;
+    @Field(() => String, {nullable:true})
+    bio!: string | null;
 
     @Field(() => String, {nullable:false})
     userId!: string;

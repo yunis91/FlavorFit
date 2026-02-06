@@ -19,8 +19,8 @@ export class ProfileCreateInput {
     @Field(() => Int, {nullable:true})
     age?: number;
 
-    @Field(() => String, {nullable:false})
-    bio!: string;
+    @Field(() => String, {nullable:true})
+    bio?: string;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

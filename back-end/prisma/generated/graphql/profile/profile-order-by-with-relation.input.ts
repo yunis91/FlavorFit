@@ -19,8 +19,8 @@ export class ProfileOrderByWithRelationInput {
     @Field(() => SortOrderInput, {nullable:true})
     age?: SortOrderInput;
 
-    @Field(() => SortOrder, {nullable:true})
-    bio?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    bio?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     userId?: `${SortOrder}`;

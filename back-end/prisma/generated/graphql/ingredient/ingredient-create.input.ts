@@ -12,8 +12,8 @@ export class IngredientCreateInput {
     @Field(() => String, {nullable:false})
     name!: string;
 
-    @Field(() => Unit, {nullable:false})
-    defaultUnit!: `${Unit}`;
+    @Field(() => Unit, {nullable:true})
+    defaultUnit?: `${Unit}`;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
@@ -22,5 +22,5 @@ export class IngredientCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => RecipeIngredientCreateNestedManyWithoutIngredientInput, {nullable:true})
-    recipes?: RecipeIngredientCreateNestedManyWithoutIngredientInput;
+    recipesIngredient?: RecipeIngredientCreateNestedManyWithoutIngredientInput;
 }

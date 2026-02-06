@@ -1,25 +1,18 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Gender } from '../prisma/gender.enum';
-import { Int } from '@nestjs/graphql';
+import { Unit } from '../prisma/unit.enum';
 
 @InputType()
-export class ProfileCreateWithoutUserInput {
+export class IngredientCreateWithoutRecipesIngredientInput {
 
     @Field(() => String, {nullable:true})
     id?: string;
 
     @Field(() => String, {nullable:false})
-    fullName!: string;
+    name!: string;
 
-    @Field(() => Gender, {nullable:true})
-    gender?: `${Gender}`;
-
-    @Field(() => Int, {nullable:true})
-    age?: number;
-
-    @Field(() => String, {nullable:true})
-    bio?: string;
+    @Field(() => Unit, {nullable:true})
+    defaultUnit?: `${Unit}`;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

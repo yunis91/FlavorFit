@@ -1,11 +1,14 @@
 -- CreateEnum
-CREATE TYPE "OrderStatus" AS ENUM ('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED');
-
--- CreateEnum
 CREATE TYPE "Unit" AS ENUM ('GRAM', 'MILLILITER', 'PIECE', 'TEASPOON', 'TABLESPOON', 'CLOVES');
 
 -- CreateEnum
+CREATE TYPE "OrderStatus" AS ENUM ('PENDING', 'PROCESSING', 'COMPLETED', 'CANCELLED');
+
+-- CreateEnum
 CREATE TYPE "Difficulty" AS ENUM ('EASY', 'MEDIUM', 'HARD');
+
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('USER', 'ADMIN');
 
 -- CreateEnum
 CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE');
@@ -15,6 +18,17 @@ CREATE TYPE "ActivityLevel" AS ENUM ('SEDENTARY', 'LIGHT', 'MODERATE', 'ACTIVE',
 
 -- CreateEnum
 CREATE TYPE "NutritionalGoal" AS ENUM ('WEIGHT_LOSS', 'MAINTENANCE', 'MUSCLE_GAIN');
+
+-- CreateTable
+CREATE TABLE "ingredients" (
+    "id" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "default_unit" "Unit" DEFAULT 'GRAM',
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "ingredients_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "orders" (
@@ -31,7 +45,7 @@ CREATE TABLE "orders" (
 -- CreateTable
 CREATE TABLE "order_items" (
     "id" TEXT NOT NULL,
-    "recipeIngredientId" TEXT NOT NULL,
+    "recipe_ingredient_id" TEXT NOT NULL,
     "quantity" INTEGER DEFAULT 1,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -40,14 +54,14 @@ CREATE TABLE "order_items" (
 );
 
 -- CreateTable
-CREATE TABLE "Courier" (
+CREATE TABLE "couriers" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "phone_number" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "Courier_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "couriers_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -89,25 +103,14 @@ CREATE TABLE "recipes" (
 );
 
 -- CreateTable
-CREATE TABLE "ingredients" (
-    "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
-    "default_unit" "Unit" NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
-
-    CONSTRAINT "ingredients_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "recipe_ingredients" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "icon_url" TEXT NOT NULL,
     "content" TEXT NOT NULL,
-    "quality" DECIMAL(65,30) NOT NULL,
+    "quantity" DOUBLE PRECISION NOT NULL,
     "unit" "Unit" NOT NULL,
-    "price" DECIMAL(65,30) NOT NULL,
+    "price" TEXT NOT NULL,
     "recipe_id" TEXT NOT NULL,
     "ingredient_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -130,12 +133,24 @@ CREATE TABLE "recipe_steps" (
 );
 
 -- CreateTable
+CREATE TABLE "users" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
+    "role" "Role" NOT NULL DEFAULT 'USER',
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "profiles" (
     "id" TEXT NOT NULL,
     "full_name" TEXT NOT NULL,
     "gender" "Gender",
     "age" INTEGER,
-    "bio" TEXT NOT NULL,
+    "bio" TEXT,
     "user_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
@@ -144,7 +159,7 @@ CREATE TABLE "profiles" (
 );
 
 -- CreateTable
-CREATE TABLE "BodyMeasurement" (
+CREATE TABLE "body_measurements" (
     "id" TEXT NOT NULL,
     "height_cm" INTEGER,
     "weight_kg" INTEGER,
@@ -159,7 +174,7 @@ CREATE TABLE "BodyMeasurement" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "BodyMeasurement_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "body_measurements_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
@@ -178,16 +193,19 @@ CREATE UNIQUE INDEX "likes_recipe_id_user_id_key" ON "likes"("recipe_id", "user_
 CREATE UNIQUE INDEX "recipe_ingredients_recipe_id_ingredient_id_key" ON "recipe_ingredients"("recipe_id", "ingredient_id");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "profiles_user_id_key" ON "profiles"("user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "BodyMeasurement_user_id_key" ON "BodyMeasurement"("user_id");
+CREATE UNIQUE INDEX "body_measurements_user_id_key" ON "body_measurements"("user_id");
 
 -- AddForeignKey
 ALTER TABLE "orders" ADD CONSTRAINT "orders_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "order_items" ADD CONSTRAINT "order_items_recipeIngredientId_fkey" FOREIGN KEY ("recipeIngredientId") REFERENCES "recipe_ingredients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "order_items" ADD CONSTRAINT "order_items_recipe_ingredient_id_fkey" FOREIGN KEY ("recipe_ingredient_id") REFERENCES "recipe_ingredients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "comments" ADD CONSTRAINT "comments_author_id_fkey" FOREIGN KEY ("author_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -217,4 +235,4 @@ ALTER TABLE "recipe_steps" ADD CONSTRAINT "recipe_steps_recipe_id_fkey" FOREIGN 
 ALTER TABLE "profiles" ADD CONSTRAINT "profiles_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "BodyMeasurement" ADD CONSTRAINT "BodyMeasurement_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "body_measurements" ADD CONSTRAINT "body_measurements_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
