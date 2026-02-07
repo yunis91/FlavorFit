@@ -88,6 +88,7 @@ export const IngredientScalarFieldEnum = {
   name: 'name',
   iconUrl: 'iconUrl',
   content: 'content',
+  price: 'price',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -99,6 +100,7 @@ export const OrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   status: 'status',
+  total: 'total',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -113,7 +115,8 @@ export const OrderItemScalarFieldEnum = {
   quantity: 'quantity',
   price: 'price',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  orderId: 'orderId'
 } as const
 
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
