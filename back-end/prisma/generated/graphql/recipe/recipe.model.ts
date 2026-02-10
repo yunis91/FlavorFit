@@ -8,8 +8,8 @@ import { NutritionFact } from '../nutrition-fact/nutrition-fact.model';
 import { RecipeTag } from '../recipe-tag/recipe-tag.model';
 import { RecipeStep } from '../recipe-step/recipe-step.model';
 import { RecipeIngredient } from '../recipe-ingredient/recipe-ingredient.model';
-import { Comment } from '../comment/comment.model';
 import { Like } from '../like/like.model';
+import { Comment } from '../comment/comment.model';
 
 @ObjectType()
 export class Recipe {
@@ -48,7 +48,7 @@ export class Recipe {
     author?: User;
 
     @Field(() => NutritionFact, {nullable:true})
-    nutritionFacts?: NutritionFact | null;
+    nutritionFact?: NutritionFact | null;
 
     @Field(() => [RecipeTag], {nullable:true})
     tags?: Array<RecipeTag>;
@@ -59,9 +59,9 @@ export class Recipe {
     @Field(() => [RecipeIngredient], {nullable:true})
     recipeIngredients?: Array<RecipeIngredient>;
 
-    @Field(() => [Comment], {nullable:true})
-    comments?: Array<Comment>;
-
     @Field(() => [Like], {nullable:true})
     likes?: Array<Like>;
+
+    @Field(() => [Comment], {nullable:true})
+    comments?: Array<Comment>;
 }

@@ -6,8 +6,8 @@ import { UserCreateNestedOneWithoutRecipesInput } from '../user/user-create-nest
 import { NutritionFactCreateNestedOneWithoutRecipeInput } from '../nutrition-fact/nutrition-fact-create-nested-one-without-recipe.input';
 import { RecipeStepCreateNestedManyWithoutRecipeInput } from '../recipe-step/recipe-step-create-nested-many-without-recipe.input';
 import { RecipeIngredientCreateNestedManyWithoutRecipeInput } from '../recipe-ingredient/recipe-ingredient-create-nested-many-without-recipe.input';
-import { CommentCreateNestedManyWithoutRecipeInput } from '../comment/comment-create-nested-many-without-recipe.input';
 import { LikeCreateNestedManyWithoutRecipeInput } from '../like/like-create-nested-many-without-recipe.input';
+import { CommentCreateNestedManyWithoutRecipeInput } from '../comment/comment-create-nested-many-without-recipe.input';
 
 @InputType()
 export class RecipeCreateWithoutTagsInput {
@@ -43,7 +43,7 @@ export class RecipeCreateWithoutTagsInput {
     author!: UserCreateNestedOneWithoutRecipesInput;
 
     @Field(() => NutritionFactCreateNestedOneWithoutRecipeInput, {nullable:true})
-    nutritionFacts?: NutritionFactCreateNestedOneWithoutRecipeInput;
+    nutritionFact?: NutritionFactCreateNestedOneWithoutRecipeInput;
 
     @Field(() => RecipeStepCreateNestedManyWithoutRecipeInput, {nullable:true})
     recipeSteps?: RecipeStepCreateNestedManyWithoutRecipeInput;
@@ -51,9 +51,9 @@ export class RecipeCreateWithoutTagsInput {
     @Field(() => RecipeIngredientCreateNestedManyWithoutRecipeInput, {nullable:true})
     recipeIngredients?: RecipeIngredientCreateNestedManyWithoutRecipeInput;
 
-    @Field(() => CommentCreateNestedManyWithoutRecipeInput, {nullable:true})
-    comments?: CommentCreateNestedManyWithoutRecipeInput;
-
     @Field(() => LikeCreateNestedManyWithoutRecipeInput, {nullable:true})
     likes?: LikeCreateNestedManyWithoutRecipeInput;
+
+    @Field(() => CommentCreateNestedManyWithoutRecipeInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutRecipeInput;
 }

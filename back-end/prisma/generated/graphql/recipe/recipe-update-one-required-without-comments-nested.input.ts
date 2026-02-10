@@ -4,7 +4,7 @@ import { RecipeCreateWithoutCommentsInput } from './recipe-create-without-commen
 import { Type } from 'class-transformer';
 import { RecipeCreateOrConnectWithoutCommentsInput } from './recipe-create-or-connect-without-comments.input';
 import { RecipeUpsertWithoutCommentsInput } from './recipe-upsert-without-comments.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeWhereUniqueInput } from './recipe-where-unique.input';
 import { RecipeUpdateToOneWithWhereWithoutCommentsInput } from './recipe-update-to-one-with-where-without-comments.input';
 

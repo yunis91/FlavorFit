@@ -7,8 +7,8 @@ import { NutritionFactUpdateOneWithoutRecipeNestedInput } from '../nutrition-fac
 import { RecipeTagUpdateManyWithoutRecipesNestedInput } from '../recipe-tag/recipe-tag-update-many-without-recipes-nested.input';
 import { RecipeStepUpdateManyWithoutRecipeNestedInput } from '../recipe-step/recipe-step-update-many-without-recipe-nested.input';
 import { RecipeIngredientUpdateManyWithoutRecipeNestedInput } from '../recipe-ingredient/recipe-ingredient-update-many-without-recipe-nested.input';
-import { CommentUpdateManyWithoutRecipeNestedInput } from '../comment/comment-update-many-without-recipe-nested.input';
 import { LikeUpdateManyWithoutRecipeNestedInput } from '../like/like-update-many-without-recipe-nested.input';
+import { CommentUpdateManyWithoutRecipeNestedInput } from '../comment/comment-update-many-without-recipe-nested.input';
 
 @InputType()
 export class RecipeUpdateInput {
@@ -44,7 +44,7 @@ export class RecipeUpdateInput {
     author?: UserUpdateOneRequiredWithoutRecipesNestedInput;
 
     @Field(() => NutritionFactUpdateOneWithoutRecipeNestedInput, {nullable:true})
-    nutritionFacts?: NutritionFactUpdateOneWithoutRecipeNestedInput;
+    nutritionFact?: NutritionFactUpdateOneWithoutRecipeNestedInput;
 
     @Field(() => RecipeTagUpdateManyWithoutRecipesNestedInput, {nullable:true})
     tags?: RecipeTagUpdateManyWithoutRecipesNestedInput;
@@ -55,9 +55,9 @@ export class RecipeUpdateInput {
     @Field(() => RecipeIngredientUpdateManyWithoutRecipeNestedInput, {nullable:true})
     recipeIngredients?: RecipeIngredientUpdateManyWithoutRecipeNestedInput;
 
-    @Field(() => CommentUpdateManyWithoutRecipeNestedInput, {nullable:true})
-    comments?: CommentUpdateManyWithoutRecipeNestedInput;
-
     @Field(() => LikeUpdateManyWithoutRecipeNestedInput, {nullable:true})
     likes?: LikeUpdateManyWithoutRecipeNestedInput;
+
+    @Field(() => CommentUpdateManyWithoutRecipeNestedInput, {nullable:true})
+    comments?: CommentUpdateManyWithoutRecipeNestedInput;
 }

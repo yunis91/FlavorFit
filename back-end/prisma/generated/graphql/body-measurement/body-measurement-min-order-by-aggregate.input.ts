@@ -33,7 +33,7 @@ export class BodyMeasurementMinOrderByAggregateInput {
     activityLevel?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    nutritionalGoal?: `${SortOrder}`;
+    nutritionGoal?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
     userId?: `${SortOrder}`;

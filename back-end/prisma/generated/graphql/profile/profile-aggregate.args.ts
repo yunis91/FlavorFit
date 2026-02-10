@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { ProfileWhereInput } from './profile-where.input';
 import { Type } from 'class-transformer';
 import { ProfileOrderByWithRelationInput } from './profile-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { ProfileWhereUniqueInput } from './profile-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { ProfileCountAggregateInput } from './profile-count-aggregate.input';

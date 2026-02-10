@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { BodyMeasurementWhereInput } from './body-measurement-where.input';
 import { Type } from 'class-transformer';
 import { BodyMeasurementOrderByWithRelationInput } from './body-measurement-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { BodyMeasurementWhereUniqueInput } from './body-measurement-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { BodyMeasurementScalarFieldEnum } from './body-measurement-scalar-field.enum';

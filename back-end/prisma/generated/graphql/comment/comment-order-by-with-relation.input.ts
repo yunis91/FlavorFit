@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
-import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
 import { RecipeOrderByWithRelationInput } from '../recipe/recipe-order-by-with-relation.input';
+import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
 
 @InputType()
 export class CommentOrderByWithRelationInput {
@@ -14,10 +14,10 @@ export class CommentOrderByWithRelationInput {
     content?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    authorId?: `${SortOrder}`;
+    recipeId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    recipeId?: `${SortOrder}`;
+    authorId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: `${SortOrder}`;
@@ -25,9 +25,9 @@ export class CommentOrderByWithRelationInput {
     @Field(() => SortOrder, {nullable:true})
     updatedAt?: `${SortOrder}`;
 
-    @Field(() => UserOrderByWithRelationInput, {nullable:true})
-    author?: UserOrderByWithRelationInput;
-
     @Field(() => RecipeOrderByWithRelationInput, {nullable:true})
     recipe?: RecipeOrderByWithRelationInput;
+
+    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    author?: UserOrderByWithRelationInput;
 }

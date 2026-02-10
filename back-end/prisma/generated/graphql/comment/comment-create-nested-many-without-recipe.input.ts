@@ -4,7 +4,7 @@ import { CommentCreateWithoutRecipeInput } from './comment-create-without-recipe
 import { Type } from 'class-transformer';
 import { CommentCreateOrConnectWithoutRecipeInput } from './comment-create-or-connect-without-recipe.input';
 import { CommentCreateManyRecipeInputEnvelope } from './comment-create-many-recipe-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { CommentWhereUniqueInput } from './comment-where-unique.input';
 
 @InputType()

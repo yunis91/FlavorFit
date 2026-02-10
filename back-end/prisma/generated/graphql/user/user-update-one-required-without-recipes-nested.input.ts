@@ -4,7 +4,7 @@ import { UserCreateWithoutRecipesInput } from './user-create-without-recipes.inp
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutRecipesInput } from './user-create-or-connect-without-recipes.input';
 import { UserUpsertWithoutRecipesInput } from './user-upsert-without-recipes.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { UserUpdateToOneWithWhereWithoutRecipesInput } from './user-update-to-one-with-where-without-recipes.input';
 

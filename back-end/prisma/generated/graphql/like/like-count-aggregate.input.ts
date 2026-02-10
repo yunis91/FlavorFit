@@ -8,10 +8,10 @@ export class LikeCountAggregateInput {
     id?: true;
 
     @Field(() => Boolean, {nullable:true})
-    userId?: true;
+    recipeId?: true;
 
     @Field(() => Boolean, {nullable:true})
-    recipeId?: true;
+    userId?: true;
 
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;

@@ -9,10 +9,10 @@ export class LikeMinOrderByAggregateInput {
     id?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    userId?: `${SortOrder}`;
+    recipeId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    recipeId?: `${SortOrder}`;
+    userId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: `${SortOrder}`;

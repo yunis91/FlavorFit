@@ -3,7 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { ActivityLevel } from '../prisma/activity-level.enum';
-import { NutritionalGoal } from '../prisma/nutritional-goal.enum';
+import { NutritionGoal } from '../prisma/nutrition-goal.enum';
 import { User } from '../user/user.model';
 
 @ObjectType()
@@ -36,8 +36,8 @@ export class BodyMeasurement {
     @Field(() => ActivityLevel, {nullable:true})
     activityLevel!: `${ActivityLevel}` | null;
 
-    @Field(() => NutritionalGoal, {nullable:true})
-    nutritionalGoal!: `${NutritionalGoal}` | null;
+    @Field(() => NutritionGoal, {nullable:true})
+    nutritionGoal!: `${NutritionGoal}` | null;
 
     @Field(() => String, {nullable:false})
     userId!: string;

@@ -9,10 +9,10 @@ export class LikeCountAggregate {
     id!: number;
 
     @Field(() => Int, {nullable:false})
-    userId!: number;
+    recipeId!: number;
 
     @Field(() => Int, {nullable:false})
-    recipeId!: number;
+    userId!: number;
 
     @Field(() => Int, {nullable:false})
     createdAt!: number;

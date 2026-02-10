@@ -8,10 +8,10 @@ export class LikeUncheckedUpdateManyInput {
     id?: string;
 
     @Field(() => String, {nullable:true})
-    userId?: string;
+    recipeId?: string;
 
     @Field(() => String, {nullable:true})
-    recipeId?: string;
+    userId?: string;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

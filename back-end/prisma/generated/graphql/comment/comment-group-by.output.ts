@@ -14,10 +14,10 @@ export class CommentGroupBy {
     content!: string;
 
     @Field(() => String, {nullable:false})
-    authorId!: string;
+    recipeId!: string;
 
     @Field(() => String, {nullable:false})
-    recipeId!: string;
+    authorId!: string;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;

@@ -6,8 +6,8 @@ import { NutritionFactOrderByWithRelationInput } from '../nutrition-fact/nutriti
 import { RecipeTagOrderByRelationAggregateInput } from '../recipe-tag/recipe-tag-order-by-relation-aggregate.input';
 import { RecipeStepOrderByRelationAggregateInput } from '../recipe-step/recipe-step-order-by-relation-aggregate.input';
 import { RecipeIngredientOrderByRelationAggregateInput } from '../recipe-ingredient/recipe-ingredient-order-by-relation-aggregate.input';
-import { CommentOrderByRelationAggregateInput } from '../comment/comment-order-by-relation-aggregate.input';
 import { LikeOrderByRelationAggregateInput } from '../like/like-order-by-relation-aggregate.input';
+import { CommentOrderByRelationAggregateInput } from '../comment/comment-order-by-relation-aggregate.input';
 
 @InputType()
 export class RecipeOrderByWithRelationInput {
@@ -46,7 +46,7 @@ export class RecipeOrderByWithRelationInput {
     author?: UserOrderByWithRelationInput;
 
     @Field(() => NutritionFactOrderByWithRelationInput, {nullable:true})
-    nutritionFacts?: NutritionFactOrderByWithRelationInput;
+    nutritionFact?: NutritionFactOrderByWithRelationInput;
 
     @Field(() => RecipeTagOrderByRelationAggregateInput, {nullable:true})
     tags?: RecipeTagOrderByRelationAggregateInput;
@@ -57,9 +57,9 @@ export class RecipeOrderByWithRelationInput {
     @Field(() => RecipeIngredientOrderByRelationAggregateInput, {nullable:true})
     recipeIngredients?: RecipeIngredientOrderByRelationAggregateInput;
 
-    @Field(() => CommentOrderByRelationAggregateInput, {nullable:true})
-    comments?: CommentOrderByRelationAggregateInput;
-
     @Field(() => LikeOrderByRelationAggregateInput, {nullable:true})
     likes?: LikeOrderByRelationAggregateInput;
+
+    @Field(() => CommentOrderByRelationAggregateInput, {nullable:true})
+    comments?: CommentOrderByRelationAggregateInput;
 }

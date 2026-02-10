@@ -43,7 +43,7 @@ export class RecipeUpdateWithoutLikesInput {
     author?: UserUpdateOneRequiredWithoutRecipesNestedInput;
 
     @Field(() => NutritionFactUpdateOneWithoutRecipeNestedInput, {nullable:true})
-    nutritionFacts?: NutritionFactUpdateOneWithoutRecipeNestedInput;
+    nutritionFact?: NutritionFactUpdateOneWithoutRecipeNestedInput;
 
     @Field(() => RecipeTagUpdateManyWithoutRecipesNestedInput, {nullable:true})
     tags?: RecipeTagUpdateManyWithoutRecipesNestedInput;

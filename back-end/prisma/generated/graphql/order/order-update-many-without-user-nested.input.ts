@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 import { OrderCreateOrConnectWithoutUserInput } from './order-create-or-connect-without-user.input';
 import { OrderUpsertWithWhereUniqueWithoutUserInput } from './order-upsert-with-where-unique-without-user.input';
 import { OrderCreateManyUserInputEnvelope } from './order-create-many-user-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { OrderWhereUniqueInput } from './order-where-unique.input';
 import { OrderUpdateWithWhereUniqueWithoutUserInput } from './order-update-with-where-unique-without-user.input';
 import { OrderUpdateManyWithWhereWithoutUserInput } from './order-update-many-with-where-without-user.input';
@@ -32,19 +32,19 @@ export class OrderUpdateManyWithoutUserNestedInput {
 
     @Field(() => [OrderWhereUniqueInput], {nullable:true})
     @Type(() => OrderWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId' | 'userId'>>;
+    set?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId'>>;
 
     @Field(() => [OrderWhereUniqueInput], {nullable:true})
     @Type(() => OrderWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId' | 'userId'>>;
+    disconnect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId'>>;
 
     @Field(() => [OrderWhereUniqueInput], {nullable:true})
     @Type(() => OrderWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId' | 'userId'>>;
+    delete?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId'>>;
 
     @Field(() => [OrderWhereUniqueInput], {nullable:true})
     @Type(() => OrderWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId' | 'userId'>>;
+    connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId'>>;
 
     @Field(() => [OrderUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
     @Type(() => OrderUpdateWithWhereUniqueWithoutUserInput)

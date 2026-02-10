@@ -12,10 +12,10 @@ export class CommentCountOrderByAggregateInput {
     content?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    authorId?: `${SortOrder}`;
+    recipeId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    recipeId?: `${SortOrder}`;
+    authorId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: `${SortOrder}`;

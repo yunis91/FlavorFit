@@ -24,5 +24,5 @@ export class IngredientUpdateInput {
     updatedAt?: Date | string;
 
     @Field(() => RecipeIngredientUpdateManyWithoutIngredientNestedInput, {nullable:true})
-    recipesIngredient?: RecipeIngredientUpdateManyWithoutIngredientNestedInput;
+    recipesIngridient?: RecipeIngredientUpdateManyWithoutIngredientNestedInput;
 }

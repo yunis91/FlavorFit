@@ -4,7 +4,7 @@ import { UserCreateWithoutMeasurementsInput } from './user-create-without-measur
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutMeasurementsInput } from './user-create-or-connect-without-measurements.input';
 import { UserUpsertWithoutMeasurementsInput } from './user-upsert-without-measurements.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { UserUpdateToOneWithWhereWithoutMeasurementsInput } from './user-update-to-one-with-where-without-measurements.input';
 

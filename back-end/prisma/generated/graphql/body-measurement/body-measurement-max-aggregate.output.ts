@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { ActivityLevel } from '../prisma/activity-level.enum';
-import { NutritionalGoal } from '../prisma/nutritional-goal.enum';
+import { NutritionGoal } from '../prisma/nutrition-goal.enum';
 
 @ObjectType()
 export class BodyMeasurementMaxAggregate {
@@ -34,8 +34,8 @@ export class BodyMeasurementMaxAggregate {
     @Field(() => ActivityLevel, {nullable:true})
     activityLevel?: `${ActivityLevel}`;
 
-    @Field(() => NutritionalGoal, {nullable:true})
-    nutritionalGoal?: `${NutritionalGoal}`;
+    @Field(() => NutritionGoal, {nullable:true})
+    nutritionGoal?: `${NutritionGoal}`;
 
     @Field(() => String, {nullable:true})
     userId?: string;

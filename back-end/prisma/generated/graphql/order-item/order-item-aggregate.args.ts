@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { OrderItemWhereInput } from './order-item-where.input';
 import { Type } from 'class-transformer';
 import { OrderItemOrderByWithRelationInput } from './order-item-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { OrderItemWhereUniqueInput } from './order-item-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { OrderItemCountAggregateInput } from './order-item-count-aggregate.input';

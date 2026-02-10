@@ -1,8 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { User } from '../user/user.model';
 import { Recipe } from '../recipe/recipe.model';
+import { User } from '../user/user.model';
 
 @ObjectType()
 export class Like {
@@ -11,10 +11,10 @@ export class Like {
     id!: string;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
+    recipeId!: string;
 
     @Field(() => String, {nullable:false})
-    recipeId!: string;
+    userId!: string;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
@@ -22,9 +22,9 @@ export class Like {
     @Field(() => Date, {nullable:false})
     updatedAt!: Date;
 
-    @Field(() => User, {nullable:false})
-    user?: User;
-
     @Field(() => Recipe, {nullable:false})
     recipe?: Recipe;
+
+    @Field(() => User, {nullable:false})
+    user?: User;
 }

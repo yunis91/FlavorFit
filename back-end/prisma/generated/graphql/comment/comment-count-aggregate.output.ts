@@ -12,10 +12,10 @@ export class CommentCountAggregate {
     content!: number;
 
     @Field(() => Int, {nullable:false})
-    authorId!: number;
+    recipeId!: number;
 
     @Field(() => Int, {nullable:false})
-    recipeId!: number;
+    authorId!: number;
 
     @Field(() => Int, {nullable:false})
     createdAt!: number;

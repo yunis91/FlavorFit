@@ -11,10 +11,10 @@ export class CommentMinAggregate {
     content?: string;
 
     @Field(() => String, {nullable:true})
-    authorId?: string;
+    recipeId?: string;
 
     @Field(() => String, {nullable:true})
-    recipeId?: string;
+    authorId?: string;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

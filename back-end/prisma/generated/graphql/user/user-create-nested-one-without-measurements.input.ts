@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { UserCreateWithoutMeasurementsInput } from './user-create-without-measurements.input';
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutMeasurementsInput } from './user-create-or-connect-without-measurements.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 
 @InputType()

@@ -7,8 +7,8 @@ import { NutritionFactCreateNestedOneWithoutRecipeInput } from '../nutrition-fac
 import { RecipeTagCreateNestedManyWithoutRecipesInput } from '../recipe-tag/recipe-tag-create-nested-many-without-recipes.input';
 import { RecipeStepCreateNestedManyWithoutRecipeInput } from '../recipe-step/recipe-step-create-nested-many-without-recipe.input';
 import { RecipeIngredientCreateNestedManyWithoutRecipeInput } from '../recipe-ingredient/recipe-ingredient-create-nested-many-without-recipe.input';
-import { CommentCreateNestedManyWithoutRecipeInput } from '../comment/comment-create-nested-many-without-recipe.input';
 import { LikeCreateNestedManyWithoutRecipeInput } from '../like/like-create-nested-many-without-recipe.input';
+import { CommentCreateNestedManyWithoutRecipeInput } from '../comment/comment-create-nested-many-without-recipe.input';
 
 @InputType()
 export class RecipeCreateInput {
@@ -44,7 +44,7 @@ export class RecipeCreateInput {
     author!: UserCreateNestedOneWithoutRecipesInput;
 
     @Field(() => NutritionFactCreateNestedOneWithoutRecipeInput, {nullable:true})
-    nutritionFacts?: NutritionFactCreateNestedOneWithoutRecipeInput;
+    nutritionFact?: NutritionFactCreateNestedOneWithoutRecipeInput;
 
     @Field(() => RecipeTagCreateNestedManyWithoutRecipesInput, {nullable:true})
     tags?: RecipeTagCreateNestedManyWithoutRecipesInput;
@@ -55,9 +55,9 @@ export class RecipeCreateInput {
     @Field(() => RecipeIngredientCreateNestedManyWithoutRecipeInput, {nullable:true})
     recipeIngredients?: RecipeIngredientCreateNestedManyWithoutRecipeInput;
 
-    @Field(() => CommentCreateNestedManyWithoutRecipeInput, {nullable:true})
-    comments?: CommentCreateNestedManyWithoutRecipeInput;
-
     @Field(() => LikeCreateNestedManyWithoutRecipeInput, {nullable:true})
     likes?: LikeCreateNestedManyWithoutRecipeInput;
+
+    @Field(() => CommentCreateNestedManyWithoutRecipeInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutRecipeInput;
 }

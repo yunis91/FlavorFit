@@ -11,10 +11,10 @@ export class CommentCreateManyInput {
     content!: string;
 
     @Field(() => String, {nullable:false})
-    authorId!: string;
+    recipeId!: string;
 
     @Field(() => String, {nullable:false})
-    recipeId!: string;
+    authorId!: string;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

@@ -4,7 +4,7 @@ import { UserCreateWithoutLikesInput } from './user-create-without-likes.input';
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutLikesInput } from './user-create-or-connect-without-likes.input';
 import { UserUpsertWithoutLikesInput } from './user-upsert-without-likes.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { UserUpdateToOneWithWhereWithoutLikesInput } from './user-update-to-one-with-where-without-likes.input';
 

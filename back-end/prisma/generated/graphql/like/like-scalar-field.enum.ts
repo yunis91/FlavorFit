@@ -2,8 +2,8 @@ import { registerEnumType } from '@nestjs/graphql';
 
 export enum LikeScalarFieldEnum {
     id = "id",
-    userId = "userId",
     recipeId = "recipeId",
+    userId = "userId",
     createdAt = "createdAt",
     updatedAt = "updatedAt"
 }

@@ -4,7 +4,7 @@ import { RecipeIngredientCreateWithoutRecipeInput } from './recipe-ingredient-cr
 import { Type } from 'class-transformer';
 import { RecipeIngredientCreateOrConnectWithoutRecipeInput } from './recipe-ingredient-create-or-connect-without-recipe.input';
 import { RecipeIngredientCreateManyRecipeInputEnvelope } from './recipe-ingredient-create-many-recipe-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeIngredientWhereUniqueInput } from './recipe-ingredient-where-unique.input';
 
 @InputType()

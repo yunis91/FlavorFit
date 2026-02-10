@@ -67,10 +67,10 @@ export const ActivityLevel = {
 export type ActivityLevel = (typeof ActivityLevel)[keyof typeof ActivityLevel]
 
 
-export const NutritionalGoal = {
+export const NutritionGoal = {
   WEIGHT_LOSS: 'WEIGHT_LOSS',
   MAINTENANCE: 'MAINTENANCE',
   MUSCLE_GAIN: 'MUSCLE_GAIN'
 } as const
 
-export type NutritionalGoal = (typeof NutritionalGoal)[keyof typeof NutritionalGoal]
+export type NutritionGoal = (typeof NutritionGoal)[keyof typeof NutritionGoal]

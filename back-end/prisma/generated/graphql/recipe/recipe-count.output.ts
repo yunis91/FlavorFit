@@ -15,8 +15,8 @@ export class RecipeCount {
     recipeIngredients?: number;
 
     @Field(() => Int, {nullable:false})
-    comments?: number;
+    likes?: number;
 
     @Field(() => Int, {nullable:false})
-    likes?: number;
+    comments?: number;
 }

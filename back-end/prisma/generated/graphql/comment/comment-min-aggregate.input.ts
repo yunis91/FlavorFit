@@ -11,10 +11,10 @@ export class CommentMinAggregateInput {
     content?: true;
 
     @Field(() => Boolean, {nullable:true})
-    authorId?: true;
+    recipeId?: true;
 
     @Field(() => Boolean, {nullable:true})
-    recipeId?: true;
+    authorId?: true;
 
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;

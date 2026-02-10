@@ -35,7 +35,7 @@ export class BodyMeasurementOrderByWithRelationInput {
     activityLevel?: SortOrderInput;
 
     @Field(() => SortOrderInput, {nullable:true})
-    nutritionalGoal?: SortOrderInput;
+    nutritionGoal?: SortOrderInput;
 
     @Field(() => SortOrder, {nullable:true})
     userId?: `${SortOrder}`;

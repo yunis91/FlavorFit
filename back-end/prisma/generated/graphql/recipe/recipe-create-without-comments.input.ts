@@ -43,7 +43,7 @@ export class RecipeCreateWithoutCommentsInput {
     author!: UserCreateNestedOneWithoutRecipesInput;
 
     @Field(() => NutritionFactCreateNestedOneWithoutRecipeInput, {nullable:true})
-    nutritionFacts?: NutritionFactCreateNestedOneWithoutRecipeInput;
+    nutritionFact?: NutritionFactCreateNestedOneWithoutRecipeInput;
 
     @Field(() => RecipeTagCreateNestedManyWithoutRecipesInput, {nullable:true})
     tags?: RecipeTagCreateNestedManyWithoutRecipesInput;

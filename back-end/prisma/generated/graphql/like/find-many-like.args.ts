@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { LikeWhereInput } from './like-where.input';
 import { Type } from 'class-transformer';
 import { LikeOrderByWithRelationInput } from './like-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { LikeWhereUniqueInput } from './like-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { LikeScalarFieldEnum } from './like-scalar-field.enum';
@@ -19,7 +19,7 @@ export class FindManyLikeArgs {
     orderBy?: Array<LikeOrderByWithRelationInput>;
 
     @Field(() => LikeWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>;
+    cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

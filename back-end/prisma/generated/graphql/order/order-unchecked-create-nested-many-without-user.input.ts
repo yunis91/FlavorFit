@@ -4,7 +4,7 @@ import { OrderCreateWithoutUserInput } from './order-create-without-user.input';
 import { Type } from 'class-transformer';
 import { OrderCreateOrConnectWithoutUserInput } from './order-create-or-connect-without-user.input';
 import { OrderCreateManyUserInputEnvelope } from './order-create-many-user-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { OrderWhereUniqueInput } from './order-where-unique.input';
 
 @InputType()
@@ -24,5 +24,5 @@ export class OrderUncheckedCreateNestedManyWithoutUserInput {
 
     @Field(() => [OrderWhereUniqueInput], {nullable:true})
     @Type(() => OrderWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId' | 'userId'>>;
+    connect?: Array<Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId'>>;
 }

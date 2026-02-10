@@ -4,7 +4,7 @@ import { UserCreateWithoutProfileInput } from './user-create-without-profile.inp
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutProfileInput } from './user-create-or-connect-without-profile.input';
 import { UserUpsertWithoutProfileInput } from './user-upsert-without-profile.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { UserUpdateToOneWithWhereWithoutProfileInput } from './user-update-to-one-with-where-without-profile.input';
 

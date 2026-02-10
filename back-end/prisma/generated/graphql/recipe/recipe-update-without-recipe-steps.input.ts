@@ -6,8 +6,8 @@ import { UserUpdateOneRequiredWithoutRecipesNestedInput } from '../user/user-upd
 import { NutritionFactUpdateOneWithoutRecipeNestedInput } from '../nutrition-fact/nutrition-fact-update-one-without-recipe-nested.input';
 import { RecipeTagUpdateManyWithoutRecipesNestedInput } from '../recipe-tag/recipe-tag-update-many-without-recipes-nested.input';
 import { RecipeIngredientUpdateManyWithoutRecipeNestedInput } from '../recipe-ingredient/recipe-ingredient-update-many-without-recipe-nested.input';
-import { CommentUpdateManyWithoutRecipeNestedInput } from '../comment/comment-update-many-without-recipe-nested.input';
 import { LikeUpdateManyWithoutRecipeNestedInput } from '../like/like-update-many-without-recipe-nested.input';
+import { CommentUpdateManyWithoutRecipeNestedInput } from '../comment/comment-update-many-without-recipe-nested.input';
 
 @InputType()
 export class RecipeUpdateWithoutRecipeStepsInput {
@@ -43,7 +43,7 @@ export class RecipeUpdateWithoutRecipeStepsInput {
     author?: UserUpdateOneRequiredWithoutRecipesNestedInput;
 
     @Field(() => NutritionFactUpdateOneWithoutRecipeNestedInput, {nullable:true})
-    nutritionFacts?: NutritionFactUpdateOneWithoutRecipeNestedInput;
+    nutritionFact?: NutritionFactUpdateOneWithoutRecipeNestedInput;
 
     @Field(() => RecipeTagUpdateManyWithoutRecipesNestedInput, {nullable:true})
     tags?: RecipeTagUpdateManyWithoutRecipesNestedInput;
@@ -51,9 +51,9 @@ export class RecipeUpdateWithoutRecipeStepsInput {
     @Field(() => RecipeIngredientUpdateManyWithoutRecipeNestedInput, {nullable:true})
     recipeIngredients?: RecipeIngredientUpdateManyWithoutRecipeNestedInput;
 
-    @Field(() => CommentUpdateManyWithoutRecipeNestedInput, {nullable:true})
-    comments?: CommentUpdateManyWithoutRecipeNestedInput;
-
     @Field(() => LikeUpdateManyWithoutRecipeNestedInput, {nullable:true})
     likes?: LikeUpdateManyWithoutRecipeNestedInput;
+
+    @Field(() => CommentUpdateManyWithoutRecipeNestedInput, {nullable:true})
+    comments?: CommentUpdateManyWithoutRecipeNestedInput;
 }

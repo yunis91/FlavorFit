@@ -4,7 +4,7 @@ import { RecipeCreateWithoutTagsInput } from './recipe-create-without-tags.input
 import { Type } from 'class-transformer';
 import { RecipeCreateOrConnectWithoutTagsInput } from './recipe-create-or-connect-without-tags.input';
 import { RecipeUpsertWithWhereUniqueWithoutTagsInput } from './recipe-upsert-with-where-unique-without-tags.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeWhereUniqueInput } from './recipe-where-unique.input';
 import { RecipeUpdateWithWhereUniqueWithoutTagsInput } from './recipe-update-with-where-unique-without-tags.input';
 import { RecipeUpdateManyWithWhereWithoutTagsInput } from './recipe-update-many-with-where-without-tags.input';

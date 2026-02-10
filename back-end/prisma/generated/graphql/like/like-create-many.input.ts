@@ -8,10 +8,10 @@ export class LikeCreateManyInput {
     id?: string;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
+    recipeId!: string;
 
     @Field(() => String, {nullable:false})
-    recipeId!: string;
+    userId!: string;
 
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;

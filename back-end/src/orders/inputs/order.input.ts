@@ -1,23 +1,23 @@
-import { Field, ID, InputType, Float } from "@nestjs/graphql";
-import { OrderStatus } from "../order.enums";
+import { Field, Float, ID, InputType } from '@nestjs/graphql'
+import { OrderStatus } from '../enums'
 
 @InputType()
 export class OrderItemInput {
-  @Field(() => ID)
-  recipeIngredientId!: string;
+	@Field(() => ID)
+	recipeIngredientId!: string
 
-  @Field(() => Float, { defaultValue: 1 })
-  quantity!: number;
+	@Field(() => Float, { defaultValue: 1 })
+	quantity!: number
 }
 
 @InputType()
 export class OrderCreateInput {
-  @Field(() => [OrderItemInput])
-  items!: OrderItemInput[];
+	@Field(() => [OrderItemInput])
+	items!: OrderItemInput[]
 }
 
 @InputType()
 export class OrderUpdateStatusInput {
-  @Field(() => OrderStatus)
-  status!: OrderStatus;
+	@Field(() => OrderStatus)
+	status!: OrderStatus
 }

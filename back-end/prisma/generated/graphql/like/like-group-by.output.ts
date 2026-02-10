@@ -11,10 +11,10 @@ export class LikeGroupBy {
     id!: string;
 
     @Field(() => String, {nullable:false})
-    userId!: string;
+    recipeId!: string;
 
     @Field(() => String, {nullable:false})
-    recipeId!: string;
+    userId!: string;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;

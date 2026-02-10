@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 import { CommentCreateOrConnectWithoutRecipeInput } from './comment-create-or-connect-without-recipe.input';
 import { CommentUpsertWithWhereUniqueWithoutRecipeInput } from './comment-upsert-with-where-unique-without-recipe.input';
 import { CommentCreateManyRecipeInputEnvelope } from './comment-create-many-recipe-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { CommentWhereUniqueInput } from './comment-where-unique.input';
 import { CommentUpdateWithWhereUniqueWithoutRecipeInput } from './comment-update-with-where-unique-without-recipe.input';
 import { CommentUpdateManyWithWhereWithoutRecipeInput } from './comment-update-many-with-where-without-recipe.input';

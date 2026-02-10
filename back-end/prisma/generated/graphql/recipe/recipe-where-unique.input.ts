@@ -10,8 +10,8 @@ import { NutritionFactScalarRelationFilter } from '../nutrition-fact/nutrition-f
 import { RecipeTagListRelationFilter } from '../recipe-tag/recipe-tag-list-relation-filter.input';
 import { RecipeStepListRelationFilter } from '../recipe-step/recipe-step-list-relation-filter.input';
 import { RecipeIngredientListRelationFilter } from '../recipe-ingredient/recipe-ingredient-list-relation-filter.input';
-import { CommentListRelationFilter } from '../comment/comment-list-relation-filter.input';
 import { LikeListRelationFilter } from '../like/like-list-relation-filter.input';
+import { CommentListRelationFilter } from '../comment/comment-list-relation-filter.input';
 
 @InputType()
 export class RecipeWhereUniqueInput {
@@ -59,7 +59,7 @@ export class RecipeWhereUniqueInput {
     author?: UserScalarRelationFilter;
 
     @Field(() => NutritionFactScalarRelationFilter, {nullable:true})
-    nutritionFacts?: NutritionFactScalarRelationFilter;
+    nutritionFact?: NutritionFactScalarRelationFilter;
 
     @Field(() => RecipeTagListRelationFilter, {nullable:true})
     tags?: RecipeTagListRelationFilter;
@@ -70,9 +70,9 @@ export class RecipeWhereUniqueInput {
     @Field(() => RecipeIngredientListRelationFilter, {nullable:true})
     recipeIngredients?: RecipeIngredientListRelationFilter;
 
-    @Field(() => CommentListRelationFilter, {nullable:true})
-    comments?: CommentListRelationFilter;
-
     @Field(() => LikeListRelationFilter, {nullable:true})
     likes?: LikeListRelationFilter;
+
+    @Field(() => CommentListRelationFilter, {nullable:true})
+    comments?: CommentListRelationFilter;
 }

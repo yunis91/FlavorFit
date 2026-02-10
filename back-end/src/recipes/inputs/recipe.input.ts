@@ -1,13 +1,12 @@
-import { Field, ID, InputType, Int } from "@nestjs/graphql";
-import { NutritionFactUpdateInput } from "./nutrition-fact.input";
-import { RecipeStepInput } from "./step.input";
+import { Field, InputType, Int } from "@nestjs/graphql";
+
 import { Difficulty } from "../recipe.enum";
+import { NutritionFactUpdateInput } from "./nutrition-fact.input";
+import { RecipeIngredientInput } from "./recipe-ingredient.input";
+import { RecipeStepInput } from "./step.input";
 
 @InputType()
 export class RecipeCreateInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
-
   @Field(() => String, { nullable: false })
   slug!: string;
 
@@ -26,6 +25,9 @@ export class RecipeCreateInput {
   @Field(() => Difficulty, { nullable: false })
   difficulty!: `${Difficulty}`;
 
+  @Field(() => NutritionFactUpdateInput, {
+    nullable: true,
+  })
   nutritionFact?: NutritionFactUpdateInput;
 
   @Field(() => String, { nullable: true })
@@ -34,8 +36,8 @@ export class RecipeCreateInput {
   @Field(() => [RecipeStepInput], { nullable: true })
   recipeSteps?: RecipeStepInput[];
 
-  @Field(() => [ID], {
+  @Field(() => [RecipeIngredientInput], {
     nullable: true,
   })
-  ingredientsIds?: string[];
+  ingredients?: RecipeIngredientInput[];
 }

@@ -42,7 +42,7 @@ export class RecipeUncheckedUpdateWithoutLikesInput {
     updatedAt?: Date | string;
 
     @Field(() => NutritionFactUncheckedUpdateOneWithoutRecipeNestedInput, {nullable:true})
-    nutritionFacts?: NutritionFactUncheckedUpdateOneWithoutRecipeNestedInput;
+    nutritionFact?: NutritionFactUncheckedUpdateOneWithoutRecipeNestedInput;
 
     @Field(() => RecipeTagUncheckedUpdateManyWithoutRecipesNestedInput, {nullable:true})
     tags?: RecipeTagUncheckedUpdateManyWithoutRecipesNestedInput;

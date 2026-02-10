@@ -22,10 +22,10 @@ export class CommentScalarWhereInput {
     content?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    authorId?: StringFilter;
+    recipeId?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    recipeId?: StringFilter;
+    authorId?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

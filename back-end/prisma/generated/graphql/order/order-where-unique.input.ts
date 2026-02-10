@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { OrderWhereInput } from './order-where.input';
 import { EnumOrderStatusFilter } from '../prisma/enum-order-status-filter.input';
+import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 
@@ -14,9 +15,6 @@ export class OrderWhereUniqueInput {
     @Field(() => String, {nullable:true})
     orderId?: string;
 
-    @Field(() => String, {nullable:true})
-    userId?: string;
-
     @Field(() => [OrderWhereInput], {nullable:true})
     AND?: Array<OrderWhereInput>;
 
@@ -28,6 +26,9 @@ export class OrderWhereUniqueInput {
 
     @Field(() => EnumOrderStatusFilter, {nullable:true})
     status?: EnumOrderStatusFilter;
+
+    @Field(() => StringFilter, {nullable:true})
+    userId?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

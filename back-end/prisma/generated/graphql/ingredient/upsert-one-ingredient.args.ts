@@ -1,6 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { IngredientWhereUniqueInput } from './ingredient-where-unique.input';
 import { Type } from 'class-transformer';
 import { IngredientCreateInput } from './ingredient-create.input';

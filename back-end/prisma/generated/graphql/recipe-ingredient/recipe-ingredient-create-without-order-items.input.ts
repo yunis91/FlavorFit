@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { Unit } from '../prisma/unit.enum';
 import { RecipeCreateNestedOneWithoutRecipeIngredientsInput } from '../recipe/recipe-create-nested-one-without-recipe-ingredients.input';
-import { IngredientCreateNestedOneWithoutRecipesIngredientInput } from '../ingredient/ingredient-create-nested-one-without-recipes-ingredient.input';
+import { IngredientCreateNestedOneWithoutRecipesIngridientInput } from '../ingredient/ingredient-create-nested-one-without-recipes-ingridient.input';
 
 @InputType()
 export class RecipeIngredientCreateWithoutOrderItemsInput {
@@ -26,6 +26,6 @@ export class RecipeIngredientCreateWithoutOrderItemsInput {
     @Field(() => RecipeCreateNestedOneWithoutRecipeIngredientsInput, {nullable:false})
     recipe!: RecipeCreateNestedOneWithoutRecipeIngredientsInput;
 
-    @Field(() => IngredientCreateNestedOneWithoutRecipesIngredientInput, {nullable:false})
-    ingredient!: IngredientCreateNestedOneWithoutRecipesIngredientInput;
+    @Field(() => IngredientCreateNestedOneWithoutRecipesIngridientInput, {nullable:false})
+    ingredient!: IngredientCreateNestedOneWithoutRecipesIngridientInput;
 }

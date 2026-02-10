@@ -4,7 +4,7 @@ import { UserCreateWithoutOrdersInput } from './user-create-without-orders.input
 import { Type } from 'class-transformer';
 import { UserCreateOrConnectWithoutOrdersInput } from './user-create-or-connect-without-orders.input';
 import { UserUpsertWithoutOrdersInput } from './user-upsert-without-orders.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { UserWhereUniqueInput } from './user-where-unique.input';
 import { UserUpdateToOneWithWhereWithoutOrdersInput } from './user-update-to-one-with-where-without-orders.input';
 

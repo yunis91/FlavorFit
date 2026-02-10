@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { CommentWhereInput } from './comment-where.input';
 import { Type } from 'class-transformer';
 import { CommentOrderByWithRelationInput } from './comment-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { CommentWhereUniqueInput } from './comment-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { CommentScalarFieldEnum } from './comment-scalar-field.enum';

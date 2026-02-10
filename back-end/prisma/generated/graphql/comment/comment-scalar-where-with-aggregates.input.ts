@@ -22,10 +22,10 @@ export class CommentScalarWhereWithAggregatesInput {
     content?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    authorId?: StringWithAggregatesFilter;
+    recipeId?: StringWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
-    recipeId?: StringWithAggregatesFilter;
+    authorId?: StringWithAggregatesFilter;
 
     @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
     createdAt?: DateTimeWithAggregatesFilter;

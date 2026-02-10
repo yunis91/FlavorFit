@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { PrismaService } from "../prisma/prisma.service";
+import { PrismaService } from "src/prisma/prisma.service";
 import { RecipeCreateInput } from "./inputs/recipe.input";
 
 @Injectable()
@@ -7,10 +7,10 @@ export class AdminRecipesService {
   constructor(private readonly prisma: PrismaService) {}
 
   getAll() {
-    return this.prisma.recipe.findMany();
+    return this.prisma.ingredient.findMany();
   }
 
-  //admin only
+  // admin only
   async getById(id: string) {
     const recipe = await this.prisma.recipe.findUnique({
       where: { id },
@@ -19,6 +19,7 @@ export class AdminRecipesService {
     if (!recipe) {
       throw new NotFoundException(`recipe with ID ${id} not found`);
     }
+
     return recipe;
   }
 
@@ -27,7 +28,7 @@ export class AdminRecipesService {
     {
       recipeSteps,
       nutritionFact,
-      ingredientsIds,
+      ingredients,
       tags,
       ...data
     }: RecipeCreateInput,
@@ -36,9 +37,7 @@ export class AdminRecipesService {
       data: {
         ...data,
         author: {
-          connect: {
-            id: authorId,
-          },
+          connect: { id: authorId },
         },
         ...(!!nutritionFact && {
           nutritionFact: {
@@ -48,11 +47,12 @@ export class AdminRecipesService {
         recipeSteps: {
           create: recipeSteps,
         },
-        ...(!!ingredientsIds?.length && {
+        ...(!!ingredients?.length && {
           recipeIngredients: {
-            create: ingredientsIds.map((ingredientId, index) => ({
-              ingredientId,
-              quantity: 1,
+            create: ingredients.map((item, index) => ({
+              ingredientId: item.ingredientId,
+              quantity: item.quantity,
+              unit: item.unit,
               order: index,
             })),
           },
@@ -70,11 +70,11 @@ export class AdminRecipesService {
   }
 
   update(
-    authorId: string,
+    id: string,
     {
       recipeSteps,
       nutritionFact,
-      ingredientsIds,
+      ingredients,
       tags,
       ...data
     }: RecipeCreateInput,
@@ -95,18 +95,19 @@ export class AdminRecipesService {
           recipeSteps: {
             deleteMany: {},
             create: recipeSteps.map((step) => ({
+              order: step.order,
               title: step.title,
               description: step.description,
-              order: step.order,
             })),
           },
         }),
-        ...(ingredientsIds && {
+        ...(ingredients && {
           recipeIngredients: {
             deleteMany: {},
-            create: ingredientsIds.map((ingredientId, index) => ({
-              ingredientId,
-              quantity: 1,
+            create: ingredients.map((item, index) => ({
+              ingredientId: item.ingredientId,
+              quantity: item.quantity,
+              unit: item.unit,
               order: index,
             })),
           },
@@ -124,7 +125,7 @@ export class AdminRecipesService {
     });
   }
 
-  //admin only
+  // admin only
   deleteById(id: string) {
     return this.prisma.recipe.delete({
       where: { id },

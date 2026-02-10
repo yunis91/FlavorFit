@@ -310,11 +310,11 @@ export type EnumActivityLevelNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel> | $Enums.ActivityLevel | null
 }
 
-export type EnumNutritionalGoalNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.NutritionalGoal | Prisma.EnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  in?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumNutritionalGoalNullableFilter<$PrismaModel> | $Enums.NutritionalGoal | null
+export type EnumNutritionGoalNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.NutritionGoal | Prisma.EnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumNutritionGoalNullableFilter<$PrismaModel> | $Enums.NutritionGoal | null
 }
 
 export type EnumActivityLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -327,14 +327,14 @@ export type EnumActivityLevelNullableWithAggregatesFilter<$PrismaModel = never> 
   _max?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel>
 }
 
-export type EnumNutritionalGoalNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.NutritionalGoal | Prisma.EnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  in?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumNutritionalGoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.NutritionalGoal | null
+export type EnumNutritionGoalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NutritionGoal | Prisma.EnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumNutritionGoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.NutritionGoal | null
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumNutritionalGoalNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumNutritionalGoalNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNutritionGoalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNutritionGoalNullableFilter<$PrismaModel>
 }
 
 export type NestedStringFilter<$PrismaModel = never> = {
@@ -646,11 +646,11 @@ export type NestedEnumActivityLevelNullableFilter<$PrismaModel = never> = {
   not?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel> | $Enums.ActivityLevel | null
 }
 
-export type NestedEnumNutritionalGoalNullableFilter<$PrismaModel = never> = {
-  equals?: $Enums.NutritionalGoal | Prisma.EnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  in?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumNutritionalGoalNullableFilter<$PrismaModel> | $Enums.NutritionalGoal | null
+export type NestedEnumNutritionGoalNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.NutritionGoal | Prisma.EnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumNutritionGoalNullableFilter<$PrismaModel> | $Enums.NutritionGoal | null
 }
 
 export type NestedEnumActivityLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -663,14 +663,14 @@ export type NestedEnumActivityLevelNullableWithAggregatesFilter<$PrismaModel = n
   _max?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel>
 }
 
-export type NestedEnumNutritionalGoalNullableWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.NutritionalGoal | Prisma.EnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  in?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  notIn?: $Enums.NutritionalGoal[] | Prisma.ListEnumNutritionalGoalFieldRefInput<$PrismaModel> | null
-  not?: Prisma.NestedEnumNutritionalGoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.NutritionalGoal | null
+export type NestedEnumNutritionGoalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.NutritionGoal | Prisma.EnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.NutritionGoal[] | Prisma.ListEnumNutritionGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumNutritionGoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.NutritionGoal | null
   _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumNutritionalGoalNullableFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumNutritionalGoalNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumNutritionGoalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumNutritionGoalNullableFilter<$PrismaModel>
 }
 
 

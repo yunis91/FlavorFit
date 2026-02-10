@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
 import { NutritionFactUpdateInput } from './nutrition-fact-update.input';
 import { Type } from 'class-transformer';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { NutritionFactWhereUniqueInput } from './nutrition-fact-where-unique.input';
 
 @ArgsType()

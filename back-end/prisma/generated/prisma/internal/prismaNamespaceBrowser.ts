@@ -114,9 +114,9 @@ export const OrderItemScalarFieldEnum = {
   recipeIngredientId: 'recipeIngredientId',
   quantity: 'quantity',
   price: 'price',
+  orderId: 'orderId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  orderId: 'orderId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
@@ -136,8 +136,8 @@ export type CourierScalarFieldEnum = (typeof CourierScalarFieldEnum)[keyof typeo
 export const CommentScalarFieldEnum = {
   id: 'id',
   content: 'content',
-  authorId: 'authorId',
   recipeId: 'recipeId',
+  authorId: 'authorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -147,8 +147,8 @@ export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeo
 
 export const LikeScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   recipeId: 'recipeId',
+  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -164,6 +164,7 @@ export const RecipeScalarFieldEnum = {
   calories: 'calories',
   cookingTime: 'cookingTime',
   difficulty: 'difficulty',
+  views: 'views',
   authorId: 'authorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -258,7 +259,7 @@ export const BodyMeasurementScalarFieldEnum = {
   thighCm: 'thighCm',
   armCm: 'armCm',
   activityLevel: 'activityLevel',
-  nutritionalGoal: 'nutritionalGoal',
+  nutritionGoal: 'nutritionGoal',
   userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

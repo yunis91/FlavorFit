@@ -4,7 +4,7 @@ import { RecipeStepCreateWithoutRecipeInput } from './recipe-step-create-without
 import { Type } from 'class-transformer';
 import { RecipeStepCreateOrConnectWithoutRecipeInput } from './recipe-step-create-or-connect-without-recipe.input';
 import { RecipeStepCreateManyRecipeInputEnvelope } from './recipe-step-create-many-recipe-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeStepWhereUniqueInput } from './recipe-step-where-unique.input';
 
 @InputType()

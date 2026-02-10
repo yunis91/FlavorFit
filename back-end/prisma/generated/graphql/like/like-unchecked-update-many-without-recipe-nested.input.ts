@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 import { LikeCreateOrConnectWithoutRecipeInput } from './like-create-or-connect-without-recipe.input';
 import { LikeUpsertWithWhereUniqueWithoutRecipeInput } from './like-upsert-with-where-unique-without-recipe.input';
 import { LikeCreateManyRecipeInputEnvelope } from './like-create-many-recipe-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { LikeWhereUniqueInput } from './like-where-unique.input';
 import { LikeUpdateWithWhereUniqueWithoutRecipeInput } from './like-update-with-where-unique-without-recipe.input';
 import { LikeUpdateManyWithWhereWithoutRecipeInput } from './like-update-many-with-where-without-recipe.input';
@@ -32,19 +32,19 @@ export class LikeUncheckedUpdateManyWithoutRecipeNestedInput {
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    set?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    disconnect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    delete?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeUpdateWithWhereUniqueWithoutRecipeInput], {nullable:true})
     @Type(() => LikeUpdateWithWhereUniqueWithoutRecipeInput)

@@ -4,7 +4,7 @@ import { RecipeIngredientCreateWithoutOrderItemsInput } from './recipe-ingredien
 import { Type } from 'class-transformer';
 import { RecipeIngredientCreateOrConnectWithoutOrderItemsInput } from './recipe-ingredient-create-or-connect-without-order-items.input';
 import { RecipeIngredientUpsertWithoutOrderItemsInput } from './recipe-ingredient-upsert-without-order-items.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeIngredientWhereUniqueInput } from './recipe-ingredient-where-unique.input';
 import { RecipeIngredientUpdateToOneWithWhereWithoutOrderItemsInput } from './recipe-ingredient-update-to-one-with-where-without-order-items.input';
 

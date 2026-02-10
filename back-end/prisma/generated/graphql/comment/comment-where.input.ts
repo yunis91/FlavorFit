@@ -2,8 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
-import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 import { RecipeScalarRelationFilter } from '../recipe/recipe-scalar-relation-filter.input';
+import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 
 @InputType()
 export class CommentWhereInput {
@@ -24,10 +24,10 @@ export class CommentWhereInput {
     content?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    authorId?: StringFilter;
+    recipeId?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    recipeId?: StringFilter;
+    authorId?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;
@@ -35,9 +35,9 @@ export class CommentWhereInput {
     @Field(() => DateTimeFilter, {nullable:true})
     updatedAt?: DateTimeFilter;
 
-    @Field(() => UserScalarRelationFilter, {nullable:true})
-    author?: UserScalarRelationFilter;
-
     @Field(() => RecipeScalarRelationFilter, {nullable:true})
     recipe?: RecipeScalarRelationFilter;
+
+    @Field(() => UserScalarRelationFilter, {nullable:true})
+    author?: UserScalarRelationFilter;
 }

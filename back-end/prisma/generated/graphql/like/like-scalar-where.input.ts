@@ -19,10 +19,10 @@ export class LikeScalarWhereInput {
     id?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    userId?: StringFilter;
+    recipeId?: StringFilter;
 
     @Field(() => StringFilter, {nullable:true})
-    recipeId?: StringFilter;
+    userId?: StringFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

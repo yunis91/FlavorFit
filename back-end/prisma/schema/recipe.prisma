@@ -8,17 +8,19 @@ model Recipe {
   cookingTime Int        @map("cooking_time")
   difficulty  Difficulty
 
+  views Int @default(0)
+
   author   User   @relation(fields: [authorId], references: [id])
   authorId String @map("author_id")
 
-  nutritionFacts NutritionFact?
+  nutritionFact NutritionFact?
 
   tags              RecipeTag[]
   recipeSteps       RecipeStep[]
   recipeIngredients RecipeIngredient[]
 
-  comments Comment[]
   likes    Like[]
+  comments Comment[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -43,7 +45,7 @@ model RecipeIngredient {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@unique([recipeId, ingredientId]) // 1 рецепт-1ингредиент
+  @@unique([recipeId, ingredientId])
   @@map("recipe_ingredients")
 }
 

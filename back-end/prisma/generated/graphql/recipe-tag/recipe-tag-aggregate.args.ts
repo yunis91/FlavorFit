@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { RecipeTagWhereInput } from './recipe-tag-where.input';
 import { Type } from 'class-transformer';
 import { RecipeTagOrderByWithRelationInput } from './recipe-tag-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeTagWhereUniqueInput } from './recipe-tag-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { RecipeTagCountAggregateInput } from './recipe-tag-count-aggregate.input';

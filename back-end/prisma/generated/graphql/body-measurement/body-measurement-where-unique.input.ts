@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { BodyMeasurementWhereInput } from './body-measurement-where.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { EnumActivityLevelFilter } from '../prisma/enum-activity-level-filter.input';
-import { EnumNutritionalGoalFilter } from '../prisma/enum-nutritional-goal-filter.input';
+import { EnumNutritionGoalFilter } from '../prisma/enum-nutrition-goal-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 
@@ -49,8 +49,8 @@ export class BodyMeasurementWhereUniqueInput {
     @Field(() => EnumActivityLevelFilter, {nullable:true})
     activityLevel?: EnumActivityLevelFilter;
 
-    @Field(() => EnumNutritionalGoalFilter, {nullable:true})
-    nutritionalGoal?: EnumNutritionalGoalFilter;
+    @Field(() => EnumNutritionGoalFilter, {nullable:true})
+    nutritionGoal?: EnumNutritionGoalFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

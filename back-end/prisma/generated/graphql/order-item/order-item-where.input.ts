@@ -36,5 +36,5 @@ export class OrderItemWhereInput {
     updatedAt?: DateTimeFilter;
 
     @Field(() => RecipeIngredientScalarRelationFilter, {nullable:true})
-    recipeIngredients?: RecipeIngredientScalarRelationFilter;
+    recipeIngredient?: RecipeIngredientScalarRelationFilter;
 }

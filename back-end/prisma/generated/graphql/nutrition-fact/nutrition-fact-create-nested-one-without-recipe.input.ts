@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { NutritionFactCreateWithoutRecipeInput } from './nutrition-fact-create-without-recipe.input';
 import { Type } from 'class-transformer';
 import { NutritionFactCreateOrConnectWithoutRecipeInput } from './nutrition-fact-create-or-connect-without-recipe.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { NutritionFactWhereUniqueInput } from './nutrition-fact-where-unique.input';
 
 @InputType()

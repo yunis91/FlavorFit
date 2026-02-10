@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { OrderWhereInput } from './order-where.input';
 import { Type } from 'class-transformer';
 import { OrderOrderByWithRelationInput } from './order-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { OrderWhereUniqueInput } from './order-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { OrderScalarFieldEnum } from './order-scalar-field.enum';
@@ -19,7 +19,7 @@ export class FindManyOrderArgs {
     orderBy?: Array<OrderOrderByWithRelationInput>;
 
     @Field(() => OrderWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId' | 'userId'>;
+    cursor?: Prisma.AtLeast<OrderWhereUniqueInput, 'id' | 'orderId'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

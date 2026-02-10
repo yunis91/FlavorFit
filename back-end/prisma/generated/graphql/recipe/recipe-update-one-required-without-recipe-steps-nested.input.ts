@@ -4,7 +4,7 @@ import { RecipeCreateWithoutRecipeStepsInput } from './recipe-create-without-rec
 import { Type } from 'class-transformer';
 import { RecipeCreateOrConnectWithoutRecipeStepsInput } from './recipe-create-or-connect-without-recipe-steps.input';
 import { RecipeUpsertWithoutRecipeStepsInput } from './recipe-upsert-without-recipe-steps.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeWhereUniqueInput } from './recipe-where-unique.input';
 import { RecipeUpdateToOneWithWhereWithoutRecipeStepsInput } from './recipe-update-to-one-with-where-without-recipe-steps.input';
 

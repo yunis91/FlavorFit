@@ -22,5 +22,5 @@ export class OrderItemCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => RecipeIngredientCreateNestedOneWithoutOrderItemsInput, {nullable:false})
-    recipeIngredients!: RecipeIngredientCreateNestedOneWithoutOrderItemsInput;
+    recipeIngredient!: RecipeIngredientCreateNestedOneWithoutOrderItemsInput;
 }

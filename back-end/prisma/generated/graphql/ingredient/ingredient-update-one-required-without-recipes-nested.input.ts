@@ -4,7 +4,7 @@ import { IngredientCreateWithoutRecipesInput } from './ingredient-create-without
 import { Type } from 'class-transformer';
 import { IngredientCreateOrConnectWithoutRecipesInput } from './ingredient-create-or-connect-without-recipes.input';
 import { IngredientUpsertWithoutRecipesInput } from './ingredient-upsert-without-recipes.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { IngredientWhereUniqueInput } from './ingredient-where-unique.input';
 import { IngredientUpdateToOneWithWhereWithoutRecipesInput } from './ingredient-update-to-one-with-where-without-recipes.input';
 

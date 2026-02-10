@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { RecipeCreateWithoutCommentsInput } from './recipe-create-without-comments.input';
 import { Type } from 'class-transformer';
 import { RecipeCreateOrConnectWithoutCommentsInput } from './recipe-create-or-connect-without-comments.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeWhereUniqueInput } from './recipe-where-unique.input';
 
 @InputType()

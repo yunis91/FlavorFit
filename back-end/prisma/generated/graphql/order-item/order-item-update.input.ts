@@ -22,5 +22,5 @@ export class OrderItemUpdateInput {
     updatedAt?: Date | string;
 
     @Field(() => RecipeIngredientUpdateOneRequiredWithoutOrderItemsNestedInput, {nullable:true})
-    recipeIngredients?: RecipeIngredientUpdateOneRequiredWithoutOrderItemsNestedInput;
+    recipeIngredient?: RecipeIngredientUpdateOneRequiredWithoutOrderItemsNestedInput;
 }

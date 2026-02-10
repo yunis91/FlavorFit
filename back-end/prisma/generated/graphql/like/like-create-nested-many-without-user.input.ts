@@ -4,7 +4,7 @@ import { LikeCreateWithoutUserInput } from './like-create-without-user.input';
 import { Type } from 'class-transformer';
 import { LikeCreateOrConnectWithoutUserInput } from './like-create-or-connect-without-user.input';
 import { LikeCreateManyUserInputEnvelope } from './like-create-many-user-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { LikeWhereUniqueInput } from './like-where-unique.input';
 
 @InputType()
@@ -24,5 +24,5 @@ export class LikeCreateNestedManyWithoutUserInput {
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 }

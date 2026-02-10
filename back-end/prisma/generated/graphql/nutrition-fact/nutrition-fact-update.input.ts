@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
-import { RecipeUpdateOneRequiredWithoutNutritionFactsNestedInput } from '../recipe/recipe-update-one-required-without-nutrition-facts-nested.input';
+import { RecipeUpdateOneRequiredWithoutNutritionFactNestedInput } from '../recipe/recipe-update-one-required-without-nutrition-fact-nested.input';
 
 @InputType()
 export class NutritionFactUpdateInput {
@@ -27,6 +27,6 @@ export class NutritionFactUpdateInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => RecipeUpdateOneRequiredWithoutNutritionFactsNestedInput, {nullable:true})
-    recipe?: RecipeUpdateOneRequiredWithoutNutritionFactsNestedInput;
+    @Field(() => RecipeUpdateOneRequiredWithoutNutritionFactNestedInput, {nullable:true})
+    recipe?: RecipeUpdateOneRequiredWithoutNutritionFactNestedInput;
 }

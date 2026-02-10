@@ -6,8 +6,8 @@ import { NutritionFactUncheckedCreateNestedOneWithoutRecipeInput } from '../nutr
 import { RecipeTagUncheckedCreateNestedManyWithoutRecipesInput } from '../recipe-tag/recipe-tag-unchecked-create-nested-many-without-recipes.input';
 import { RecipeStepUncheckedCreateNestedManyWithoutRecipeInput } from '../recipe-step/recipe-step-unchecked-create-nested-many-without-recipe.input';
 import { RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput } from '../recipe-ingredient/recipe-ingredient-unchecked-create-nested-many-without-recipe.input';
-import { CommentUncheckedCreateNestedManyWithoutRecipeInput } from '../comment/comment-unchecked-create-nested-many-without-recipe.input';
 import { LikeUncheckedCreateNestedManyWithoutRecipeInput } from '../like/like-unchecked-create-nested-many-without-recipe.input';
+import { CommentUncheckedCreateNestedManyWithoutRecipeInput } from '../comment/comment-unchecked-create-nested-many-without-recipe.input';
 
 @InputType()
 export class RecipeUncheckedCreateInput {
@@ -43,7 +43,7 @@ export class RecipeUncheckedCreateInput {
     updatedAt?: Date | string;
 
     @Field(() => NutritionFactUncheckedCreateNestedOneWithoutRecipeInput, {nullable:true})
-    nutritionFacts?: NutritionFactUncheckedCreateNestedOneWithoutRecipeInput;
+    nutritionFact?: NutritionFactUncheckedCreateNestedOneWithoutRecipeInput;
 
     @Field(() => RecipeTagUncheckedCreateNestedManyWithoutRecipesInput, {nullable:true})
     tags?: RecipeTagUncheckedCreateNestedManyWithoutRecipesInput;
@@ -54,9 +54,9 @@ export class RecipeUncheckedCreateInput {
     @Field(() => RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
     recipeIngredients?: RecipeIngredientUncheckedCreateNestedManyWithoutRecipeInput;
 
-    @Field(() => CommentUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
-    comments?: CommentUncheckedCreateNestedManyWithoutRecipeInput;
-
     @Field(() => LikeUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
     likes?: LikeUncheckedCreateNestedManyWithoutRecipeInput;
+
+    @Field(() => CommentUncheckedCreateNestedManyWithoutRecipeInput, {nullable:true})
+    comments?: CommentUncheckedCreateNestedManyWithoutRecipeInput;
 }

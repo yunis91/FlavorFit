@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 import { RecipeIngredientCreateOrConnectWithoutIngredientInput } from './recipe-ingredient-create-or-connect-without-ingredient.input';
 import { RecipeIngredientUpsertWithWhereUniqueWithoutIngredientInput } from './recipe-ingredient-upsert-with-where-unique-without-ingredient.input';
 import { RecipeIngredientCreateManyIngredientInputEnvelope } from './recipe-ingredient-create-many-ingredient-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeIngredientWhereUniqueInput } from './recipe-ingredient-where-unique.input';
 import { RecipeIngredientUpdateWithWhereUniqueWithoutIngredientInput } from './recipe-ingredient-update-with-where-unique-without-ingredient.input';
 import { RecipeIngredientUpdateManyWithWhereWithoutIngredientInput } from './recipe-ingredient-update-many-with-where-without-ingredient.input';

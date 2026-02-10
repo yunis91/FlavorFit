@@ -2,7 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { Unit } from '../prisma/unit.enum';
-import { OrderItemUncheckedCreateNestedManyWithoutRecipeIngredientsInput } from '../order-item/order-item-unchecked-create-nested-many-without-recipe-ingredients.input';
+import { OrderItemUncheckedCreateNestedManyWithoutRecipeIngredientInput } from '../order-item/order-item-unchecked-create-nested-many-without-recipe-ingredient.input';
 
 @InputType()
 export class RecipeIngredientUncheckedCreateWithoutIngredientInput {
@@ -25,6 +25,6 @@ export class RecipeIngredientUncheckedCreateWithoutIngredientInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => OrderItemUncheckedCreateNestedManyWithoutRecipeIngredientsInput, {nullable:true})
-    orderItems?: OrderItemUncheckedCreateNestedManyWithoutRecipeIngredientsInput;
+    @Field(() => OrderItemUncheckedCreateNestedManyWithoutRecipeIngredientInput, {nullable:true})
+    orderItems?: OrderItemUncheckedCreateNestedManyWithoutRecipeIngredientInput;
 }

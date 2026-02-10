@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 import { NutritionFactCreateOrConnectWithoutRecipeInput } from './nutrition-fact-create-or-connect-without-recipe.input';
 import { NutritionFactUpsertWithoutRecipeInput } from './nutrition-fact-upsert-without-recipe.input';
 import { NutritionFactWhereInput } from './nutrition-fact-where.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { NutritionFactWhereUniqueInput } from './nutrition-fact-where-unique.input';
 import { NutritionFactUpdateToOneWithWhereWithoutRecipeInput } from './nutrition-fact-update-to-one-with-where-without-recipe.input';
 

@@ -10,7 +10,7 @@ export enum BodyMeasurementScalarFieldEnum {
     thighCm = "thighCm",
     armCm = "armCm",
     activityLevel = "activityLevel",
-    nutritionalGoal = "nutritionalGoal",
+    nutritionGoal = "nutritionGoal",
     userId = "userId",
     createdAt = "createdAt",
     updatedAt = "updatedAt"

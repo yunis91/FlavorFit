@@ -26,5 +26,5 @@ export class OrderItem {
     updatedAt!: Date;
 
     @Field(() => RecipeIngredient, {nullable:false})
-    recipeIngredients?: RecipeIngredient;
+    recipeIngredient?: RecipeIngredient;
 }

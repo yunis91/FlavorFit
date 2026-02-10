@@ -33,7 +33,7 @@ export class BodyMeasurementCountAggregate {
     activityLevel!: number;
 
     @Field(() => Int, {nullable:false})
-    nutritionalGoal!: number;
+    nutritionGoal!: number;
 
     @Field(() => Int, {nullable:false})
     userId!: number;

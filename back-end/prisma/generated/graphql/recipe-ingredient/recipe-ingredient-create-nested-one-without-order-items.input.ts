@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { RecipeIngredientCreateWithoutOrderItemsInput } from './recipe-ingredient-create-without-order-items.input';
 import { Type } from 'class-transformer';
 import { RecipeIngredientCreateOrConnectWithoutOrderItemsInput } from './recipe-ingredient-create-or-connect-without-order-items.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeIngredientWhereUniqueInput } from './recipe-ingredient-where-unique.input';
 
 @InputType()

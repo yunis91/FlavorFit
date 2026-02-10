@@ -25,5 +25,5 @@ export class Ingredient {
     updatedAt!: Date;
 
     @Field(() => [RecipeIngredient], {nullable:true})
-    recipesIngredient?: Array<RecipeIngredient>;
+    recipesIngridient?: Array<RecipeIngredient>;
 }

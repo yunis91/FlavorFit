@@ -4,7 +4,7 @@ import { RecipeCreateWithoutAuthorInput } from './recipe-create-without-author.i
 import { Type } from 'class-transformer';
 import { RecipeCreateOrConnectWithoutAuthorInput } from './recipe-create-or-connect-without-author.input';
 import { RecipeCreateManyAuthorInputEnvelope } from './recipe-create-many-author-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeWhereUniqueInput } from './recipe-where-unique.input';
 
 @InputType()

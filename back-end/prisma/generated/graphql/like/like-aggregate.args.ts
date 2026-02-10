@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { LikeWhereInput } from './like-where.input';
 import { Type } from 'class-transformer';
 import { LikeOrderByWithRelationInput } from './like-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { LikeWhereUniqueInput } from './like-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { LikeCountAggregateInput } from './like-count-aggregate.input';
@@ -21,7 +21,7 @@ export class LikeAggregateArgs {
     orderBy?: Array<LikeOrderByWithRelationInput>;
 
     @Field(() => LikeWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>;
+    cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>;
 
     @Field(() => Int, {nullable:true})
     take?: number;

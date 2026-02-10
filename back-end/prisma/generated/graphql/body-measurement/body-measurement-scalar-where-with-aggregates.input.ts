@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringWithAggregatesFilter } from '../prisma/string-with-aggregates-filter.input';
 import { IntWithAggregatesFilter } from '../prisma/int-with-aggregates-filter.input';
 import { EnumActivityLevelWithAggregatesFilter } from '../prisma/enum-activity-level-with-aggregates-filter.input';
-import { EnumNutritionalGoalWithAggregatesFilter } from '../prisma/enum-nutritional-goal-with-aggregates-filter.input';
+import { EnumNutritionGoalWithAggregatesFilter } from '../prisma/enum-nutrition-goal-with-aggregates-filter.input';
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 
 @InputType()
@@ -45,8 +45,8 @@ export class BodyMeasurementScalarWhereWithAggregatesInput {
     @Field(() => EnumActivityLevelWithAggregatesFilter, {nullable:true})
     activityLevel?: EnumActivityLevelWithAggregatesFilter;
 
-    @Field(() => EnumNutritionalGoalWithAggregatesFilter, {nullable:true})
-    nutritionalGoal?: EnumNutritionalGoalWithAggregatesFilter;
+    @Field(() => EnumNutritionGoalWithAggregatesFilter, {nullable:true})
+    nutritionGoal?: EnumNutritionGoalWithAggregatesFilter;
 
     @Field(() => StringWithAggregatesFilter, {nullable:true})
     userId?: StringWithAggregatesFilter;

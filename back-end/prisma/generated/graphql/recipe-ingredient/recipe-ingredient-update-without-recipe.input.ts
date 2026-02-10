@@ -2,8 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { Unit } from '../prisma/unit.enum';
-import { IngredientUpdateOneRequiredWithoutRecipesIngredientNestedInput } from '../ingredient/ingredient-update-one-required-without-recipes-ingredient-nested.input';
-import { OrderItemUpdateManyWithoutRecipeIngredientsNestedInput } from '../order-item/order-item-update-many-without-recipe-ingredients-nested.input';
+import { IngredientUpdateOneRequiredWithoutRecipesIngridientNestedInput } from '../ingredient/ingredient-update-one-required-without-recipes-ingridient-nested.input';
+import { OrderItemUpdateManyWithoutRecipeIngredientNestedInput } from '../order-item/order-item-update-many-without-recipe-ingredient-nested.input';
 
 @InputType()
 export class RecipeIngredientUpdateWithoutRecipeInput {
@@ -23,9 +23,9 @@ export class RecipeIngredientUpdateWithoutRecipeInput {
     @Field(() => Date, {nullable:true})
     updatedAt?: Date | string;
 
-    @Field(() => IngredientUpdateOneRequiredWithoutRecipesIngredientNestedInput, {nullable:true})
-    ingredient?: IngredientUpdateOneRequiredWithoutRecipesIngredientNestedInput;
+    @Field(() => IngredientUpdateOneRequiredWithoutRecipesIngridientNestedInput, {nullable:true})
+    ingredient?: IngredientUpdateOneRequiredWithoutRecipesIngridientNestedInput;
 
-    @Field(() => OrderItemUpdateManyWithoutRecipeIngredientsNestedInput, {nullable:true})
-    orderItems?: OrderItemUpdateManyWithoutRecipeIngredientsNestedInput;
+    @Field(() => OrderItemUpdateManyWithoutRecipeIngredientNestedInput, {nullable:true})
+    orderItems?: OrderItemUpdateManyWithoutRecipeIngredientNestedInput;
 }

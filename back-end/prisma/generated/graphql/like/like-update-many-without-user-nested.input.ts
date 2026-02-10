@@ -5,7 +5,7 @@ import { Type } from 'class-transformer';
 import { LikeCreateOrConnectWithoutUserInput } from './like-create-or-connect-without-user.input';
 import { LikeUpsertWithWhereUniqueWithoutUserInput } from './like-upsert-with-where-unique-without-user.input';
 import { LikeCreateManyUserInputEnvelope } from './like-create-many-user-input-envelope.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { LikeWhereUniqueInput } from './like-where-unique.input';
 import { LikeUpdateWithWhereUniqueWithoutUserInput } from './like-update-with-where-unique-without-user.input';
 import { LikeUpdateManyWithWhereWithoutUserInput } from './like-update-many-with-where-without-user.input';
@@ -32,19 +32,19 @@ export class LikeUpdateManyWithoutUserNestedInput {
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    set?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    disconnect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    delete?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeWhereUniqueInput], {nullable:true})
     @Type(() => LikeWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId' | 'recipeId_userId'>>;
+    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'recipeId_userId'>>;
 
     @Field(() => [LikeUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
     @Type(() => LikeUpdateWithWhereUniqueWithoutUserInput)

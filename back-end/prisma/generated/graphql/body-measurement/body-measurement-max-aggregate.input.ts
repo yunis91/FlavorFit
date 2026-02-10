@@ -32,7 +32,7 @@ export class BodyMeasurementMaxAggregateInput {
     activityLevel?: true;
 
     @Field(() => Boolean, {nullable:true})
-    nutritionalGoal?: true;
+    nutritionGoal?: true;
 
     @Field(() => Boolean, {nullable:true})
     userId?: true;

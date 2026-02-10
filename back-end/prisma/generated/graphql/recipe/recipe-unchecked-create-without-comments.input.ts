@@ -42,7 +42,7 @@ export class RecipeUncheckedCreateWithoutCommentsInput {
     updatedAt?: Date | string;
 
     @Field(() => NutritionFactUncheckedCreateNestedOneWithoutRecipeInput, {nullable:true})
-    nutritionFacts?: NutritionFactUncheckedCreateNestedOneWithoutRecipeInput;
+    nutritionFact?: NutritionFactUncheckedCreateNestedOneWithoutRecipeInput;
 
     @Field(() => RecipeTagUncheckedCreateNestedManyWithoutRecipesInput, {nullable:true})
     tags?: RecipeTagUncheckedCreateNestedManyWithoutRecipesInput;

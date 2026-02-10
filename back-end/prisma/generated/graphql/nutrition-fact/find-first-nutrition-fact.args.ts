@@ -3,7 +3,7 @@ import { ArgsType } from '@nestjs/graphql';
 import { NutritionFactWhereInput } from './nutrition-fact-where.input';
 import { Type } from 'class-transformer';
 import { NutritionFactOrderByWithRelationInput } from './nutrition-fact-order-by-with-relation.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { NutritionFactWhereUniqueInput } from './nutrition-fact-where-unique.input';
 import { Int } from '@nestjs/graphql';
 import { NutritionFactScalarFieldEnum } from './nutrition-fact-scalar-field.enum';

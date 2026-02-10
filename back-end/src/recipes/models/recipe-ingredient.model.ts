@@ -1,9 +1,7 @@
-import { Field } from "@nestjs/graphql";
-import { ObjectType } from "@nestjs/graphql";
-import { ID } from "@nestjs/graphql";
-import { Float } from "@nestjs/graphql";
+import { Field, Float, ID, ObjectType } from "@nestjs/graphql";
+
 import { IngredientModel } from "../ingredients/models/ingredient.model";
-import { Unit } from "../recipe.enum";
+import { Unit } from "src/recipes/recipe.enum";
 
 @ObjectType()
 export class RecipeIngredientModel {

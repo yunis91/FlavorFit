@@ -4,7 +4,7 @@ import { RecipeCreateWithoutLikesInput } from './recipe-create-without-likes.inp
 import { Type } from 'class-transformer';
 import { RecipeCreateOrConnectWithoutLikesInput } from './recipe-create-or-connect-without-likes.input';
 import { RecipeUpsertWithoutLikesInput } from './recipe-upsert-without-likes.input';
-import { Prisma } from '../../prisma/client';
+import { Prisma } from 'prisma/generated/prisma/client';
 import { RecipeWhereUniqueInput } from './recipe-where-unique.input';
 import { RecipeUpdateToOneWithWhereWithoutLikesInput } from './recipe-update-to-one-with-where-without-likes.input';
 
