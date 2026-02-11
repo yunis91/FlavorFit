@@ -1,8 +1,10 @@
-import { Module } from "@nestjs/common";
-import { ReactionService } from "./reaction.service";
-import { ReactionResolver } from "./reaction.resolver";
+import { Module } from '@nestjs/common'
+import { PrismaModule } from 'src/prisma/prisma.module'
+import { ReactionResolver } from './reaction.resolver'
+import { ReactionService } from './reaction.service'
 
 @Module({
-  providers: [ReactionResolver, ReactionService],
+	imports: [PrismaModule],
+	providers: [ReactionResolver, ReactionService]
 })
 export class ReactionModule {}

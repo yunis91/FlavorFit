@@ -2,7 +2,7 @@ import { ForbiddenError } from '@nestjs/apollo'
 import { CanActivate, ExecutionContext } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
 import { GqlExecutionContext } from '@nestjs/graphql'
-import { Role } from 'prisma/generated/prisma/client'
+import { Role } from 'prisma/generated/client'
 import { TRequestWithUser } from '../auth.interface'
 
 export class AdminGuard implements CanActivate {

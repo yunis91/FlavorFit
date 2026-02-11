@@ -1,20 +1,16 @@
-import { Field, Float, InputType } from "@nestjs/graphql";
-import { Unit } from "src/recipes/recipe.enum";
+import { Field, InputType } from '@nestjs/graphql'
 
 @InputType()
 export class IngredientCreateInput {
-  @Field(() => String, { nullable: false })
-  name!: string;
+	@Field(() => String, { nullable: false })
+	name!: string
 
-  @Field(() => String, { nullable: false })
-  iconUrl!: string;
+	@Field(() => String)
+	iconUrl!: string
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+	@Field(() => String)
+	content!: string
 
-  @Field(() => Float, { nullable: false })
-  price!: number;
-
-  @Field(() => Unit, { nullable: true })
-  defaultUnit?: `${Unit}`; // Необязательное поле
+	@Field(() => Number)
+	price!: number
 }
