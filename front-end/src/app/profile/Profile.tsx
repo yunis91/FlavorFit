@@ -1,11 +1,11 @@
-import { useGetProfileQuery } from '@/__generated__/output'
+import { useGetProfileQuery } from '@/__generated__/'
 
 export function Profile() {
   const { data } = useGetProfileQuery()
   return (
     <div>
-      <h1>{name}</h1>
-      <p>Email: {email}</p>
+      <h1>{data?.name}</h1>
+      <p>Email: {data?.email}</p>
     </div>
   )
 }
