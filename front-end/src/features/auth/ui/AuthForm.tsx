@@ -1,14 +1,16 @@
 'use client'
 
 import { useMutation } from '@apollo/client/react'
+import cn from 'clsx'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
 
 import { Button } from '@/shared/components/ui/button'
 import {
   Card,
   CardAction,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle
@@ -16,9 +18,15 @@ import {
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
 
-import { PAGES } from '@/shared/config/page.config'
+import {
+  AuthInput,
+  LoginDocument,
+  RegisterDocument
+} from '@/__generated__/graphql'
 
-import { LoginDocument, RegisterDocument } from '@/__generated__/graphql'
+import { isEmailRegex } from '../utils/is-email.regex'
+
+import { AuthChangeTypeForm } from './AuthChangeTypeForm'
 
 interface Props {
   type: 'login' | 'register'
@@ -26,9 +34,45 @@ interface Props {
 
 export function AuthForm({ type }: Props) {
   const isLogin = type === 'login'
-  const [register, { data, loading, error }] = useMutation(
-    isLogin ? LoginDocument : RegisterDocument
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid }
+  } = useForm<AuthInput>({
+    mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  })
+
+  const [auth, { loading }] = useMutation(
+    isLogin ? LoginDocument : RegisterDocument,
+    {
+      onCompleted: () => {
+        toast.success(
+          isLogin ? 'Login successful!' : 'Registration successful!',
+          {
+            id: 'auth-success'
+          }
+        )
+      },
+      onError: error => {
+        toast.error(error.message, {
+          id: 'auth-success'
+        })
+      }
+    }
   )
+
+  const handleAuth = async (data: AuthInput) => {
+    auth({
+      variables: {
+        data
+      }
+    })
+  }
 
   return (
     <div className="flex h-screen items-center justify-center">
@@ -36,61 +80,70 @@ export function AuthForm({ type }: Props) {
         <CardHeader>
           <CardTitle>{isLogin ? 'Login' : 'Register'}</CardTitle>
           <CardAction>
-            <Button
-              asChild
-              variant="link"
-            >
-              {isLogin ? (
-                <Link
-                  className="text-white"
-                  href={PAGES.REGISTER}
-                >
-                  Register
-                </Link>
-              ) : (
-                <Link
-                  className="text-white"
-                  href={PAGES.LOGIN}
-                >
-                  Login
-                </Link>
-              )}
-            </Button>
+            <AuthChangeTypeForm isLogin={isLogin} />
           </CardAction>
         </CardHeader>
-        <CardContent>
-          <form>
+
+        <form onSubmit={handleSubmit(handleAuth)}>
+          <CardContent>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
-                  id="email"
                   type="email"
-                  className="placeholder:text-white"
-                  placeholder="m@example.com"
+                  {...register('email', {
+                    required: true,
+                    pattern: {
+                      value: isEmailRegex,
+                      message: 'Invalid email address'
+                    }
+                  })}
+                  className={cn(
+                    'border border-transparent placeholder:text-white',
+                    errors.email ? 'border-red-500' : ''
+                  )}
+                  placeholder="Enter email address"
                   required
                 />
+
+                {errors.email && (
+                  <p className="text-red-500">{errors.email.message}</p>
+                )}
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Password</Label>
                 <Input
-                  id="password"
+                  {...register('password', {
+                    required: true,
+                    minLength: {
+                      value: 8,
+                      message: 'Password must be at least 8 characters long'
+                    }
+                  })}
                   type="password"
+                  placeholder="Enter password"
+                  className={cn(
+                    'borde border border-transparent placeholder:text-white',
+                    errors.password ? 'border-red-500' : ''
+                  )}
                   required
                 />
+                {errors.password && (
+                  <p className="text-red-500">{errors.password.message}</p>
+                )}
               </div>
             </div>
-          </form>
-        </CardContent>
-        <CardFooter>
-          <Button
-            type="submit"
-            className="w-full"
-            disabled={loading}
-          >
-            {isLogin ? 'Login' : 'Register'}
-          </Button>
-        </CardFooter>
+          </CardContent>
+          <CardFooter>
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={!isValid || loading}
+            >
+              {isLogin ? 'Login' : 'Register'}
+            </Button>
+          </CardFooter>
+        </form>
       </Card>
     </div>
   )
