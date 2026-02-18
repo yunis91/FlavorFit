@@ -106,7 +106,7 @@ export function AuthForm({ type }: Props) {
                       message: 'Invalid email address'
                     }
                   })}
-                  placeholder="Enter email address"
+                  placeholder="Enter email:"
                   required
                   aria-invalid={!!errors.email}
                 />
