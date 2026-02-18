@@ -1,8 +1,7 @@
 'use client'
 
 import { useMutation } from '@apollo/client/react'
-import cn from 'clsx'
-import Link from 'next/link'
+import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -27,6 +26,7 @@ import {
 import { isEmailRegex } from '../utils/is-email.regex'
 
 import { AuthChangeTypeForm } from './AuthChangeTypeForm'
+import { IconLogo } from '@/shared/ui/icons/IconLogo'
 
 interface Props {
   type: 'login' | 'register'
@@ -75,10 +75,17 @@ export function AuthForm({ type }: Props) {
   }
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <Card className="w-full max-w-sm bg-linear-to-br from-[#8062ee] to-[#a088fc] text-white">
+    <div className="flex h-screen flex-col items-center justify-center">
+      <div className="mx-auto mb-5 flex w-fit items-center gap-2">
+        <div className="bg-primary flex h-14 w-14 items-center justify-center rounded-full">
+          <IconLogo className="w-4.5 text-white" />
+        </div>
+        <div className="text-[3rem] font-extrabold">FlavorFit</div>
+      </div>
+
+      <Card className="relative w-full max-w-sm">
         <CardHeader>
-          <CardTitle>{isLogin ? 'Login' : 'Register'}</CardTitle>
+          <CardTitle>{isLogin ? 'Sign In' : 'Sign Up'}</CardTitle>
           <CardAction>
             <AuthChangeTypeForm isLogin={isLogin} />
           </CardAction>
@@ -90,6 +97,7 @@ export function AuthForm({ type }: Props) {
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  id="email"
                   type="email"
                   {...register('email', {
                     required: true,
@@ -98,16 +106,13 @@ export function AuthForm({ type }: Props) {
                       message: 'Invalid email address'
                     }
                   })}
-                  className={cn(
-                    'border border-transparent placeholder:text-white',
-                    errors.email ? 'border-red-500' : ''
-                  )}
                   placeholder="Enter email address"
                   required
+                  aria-invalid={!!errors.email}
                 />
 
                 {errors.email && (
-                  <p className="text-red-500">{errors.email.message}</p>
+                  <p className="text-destructive">{errors.email.message}</p>
                 )}
               </div>
               <div className="grid gap-2">
@@ -120,16 +125,14 @@ export function AuthForm({ type }: Props) {
                       message: 'Password must be at least 8 characters long'
                     }
                   })}
+                  id="password"
                   type="password"
                   placeholder="Enter password"
-                  className={cn(
-                    'borde border border-transparent placeholder:text-white',
-                    errors.password ? 'border-red-500' : ''
-                  )}
                   required
+                  aria-invalid={!!errors.password}
                 />
                 {errors.password && (
-                  <p className="text-red-500">{errors.password.message}</p>
+                  <p className="text-destructive">{errors.password.message}</p>
                 )}
               </div>
             </div>
@@ -144,6 +147,15 @@ export function AuthForm({ type }: Props) {
             </Button>
           </CardFooter>
         </form>
+
+        <Image
+          src="/images/graphics/salad.png"
+          alt="Salad"
+          width={140}
+          height={140}
+          className="user-select-none absolute -bottom-14 -left-14 -rotate-12"
+          draggable={false}
+        />
       </Card>
     </div>
   )

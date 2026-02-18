@@ -59,6 +59,8 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --text-4_5-xl: 2.6rem;
 }
 
 :root {
@@ -87,7 +89,7 @@
   --accent-dark: #c8a415;
   --accent-foreground: #131313;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: #f47b76;
 
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
@@ -124,4 +126,8 @@ html {
 
 button {
   @apply cursor-pointer;
+}
+
+.link-simple {
+  @apply hover:text-primary-dark text-primary underline underline-offset-4 transition-colors;
 }

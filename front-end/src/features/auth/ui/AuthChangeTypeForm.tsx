@@ -16,17 +16,17 @@ export function AuthChangeTypeForm({ isLogin }: Props) {
     >
       {isLogin ? (
         <Link
-          className="text-white"
+          className="link-simple"
           href={PAGES.REGISTER}
         >
-          Register
+          Sign Up
         </Link>
       ) : (
         <Link
-          className="text-white"
+          className="link-simple"
           href={PAGES.LOGIN}
         >
-          Login
+          Sign In
         </Link>
       )}
     </Button>
