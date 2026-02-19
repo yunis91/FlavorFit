@@ -19,6 +19,15 @@
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
 
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -74,8 +83,8 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.141 0.005 285.823);
 
-  --primary: #7c5cff;
-  --primary-dark: #5a3dcf;
+  --primary: #7659eb;
+  --primary-dark: #977eff;
   --primary-foreground: #ffffff;
 
   --secondary: oklch(0.967 0.001 286.375);
@@ -93,6 +102,15 @@
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
+
+  --gray-100: #f6f6f6;
+  --gray-200: #ededed;
+  --gray-300: #e3e3e3;
+  --gray-400: #cfcfcf;
+  --gray-500: #a8a8a8;
+  --gray-600: #7a7a7a;
+  --gray-700: #4f4f4f;
+  --gray-800: #2f2f2f;
 
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -129,4 +147,12 @@ button {
 
 .link-simple {
   @apply hover:text-primary-dark text-primary underline underline-offset-4 transition-colors;
+}
+
+a,
+button,
+input,
+textarea,
+summary {
+  @apply focus-visible:border-ring focus-visible:ring-accent focus-visible:ring-[5px];
 }

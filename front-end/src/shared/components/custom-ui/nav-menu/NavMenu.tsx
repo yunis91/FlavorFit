@@ -14,14 +14,16 @@ export function NavMenu({ menu }: Props) {
   const pathname = usePathname()
 
   return (
-    <nav className="flex items-center gap-2">
-      {menu.map(menuItem => (
-        <NavMenuItem
-          key={menuItem.href}
-          menuItem={menuItem}
-          isActive={!!match(menuItem.href)(pathname)}
-        />
-      ))}
+    <nav role="navigation">
+      <ul className="flex items-center gap-2">
+        {menu.map(menuItem => (
+          <NavMenuItem
+            key={menuItem.href}
+            menuItem={menuItem}
+            isActive={!!match(menuItem.href)(pathname)}
+          />
+        ))}
+      </ul>
     </nav>
   )
 }
