@@ -11,7 +11,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
     <ApolloProvider client={apollo}>
       {children}
 
-      <Toaster position="bottom-right" />
+      <Toaster position="top-center" />
     </ApolloProvider>
   )
 }

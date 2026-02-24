@@ -1,6 +1,6 @@
 'use client'
 
-import { useMutation } from '@apollo/client/react'
+import { useApolloClient, useMutation } from '@apollo/client/react'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -20,7 +20,12 @@ import { Label } from '@/shared/components/ui/label'
 import {
   AuthInput,
   LoginDocument,
-  RegisterDocument
+  LoginMutation,
+  LoginMutationVariables,
+  MeDocument,
+  RegisterDocument,
+  RegisterMutation,
+  RegisterMutationVariables
 } from '@/__generated__/graphql'
 
 import { isEmailRegex } from '../utils/is-email.regex'
@@ -47,24 +52,33 @@ export function AuthForm({ type }: Props) {
     }
   })
 
-  const [auth, { loading }] = useMutation(
-    isLogin ? LoginDocument : RegisterDocument,
-    {
-      onCompleted: () => {
-        toast.success(
-          isLogin ? 'Login successful!' : 'Registration successful!',
-          {
-            id: 'auth-success'
-          }
-        )
-      },
-      onError: error => {
-        toast.error(error.message, {
+  const client = useApolloClient()
+
+  const [auth, { loading }] = useMutation<
+    LoginMutation | RegisterMutation,
+    LoginMutationVariables | RegisterMutationVariables
+  >(isLogin ? LoginDocument : RegisterDocument, {
+    onCompleted: data => {
+      const authData = 'login' in data ? data?.login : data?.register
+
+      client.writeQuery({
+        query: MeDocument,
+        data: { me: authData.user }
+      })
+
+      toast.success(
+        isLogin ? 'Login successful!' : 'Registration successful!',
+        {
           id: 'auth-success'
-        })
-      }
+        }
+      )
+    },
+    onError: error => {
+      toast.error(error.message, {
+        id: 'auth-success'
+      })
     }
-  )
+  })
 
   const handleAuth = async (data: AuthInput) => {
     auth({

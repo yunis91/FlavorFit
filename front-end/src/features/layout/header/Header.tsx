@@ -3,6 +3,8 @@
 import { Bell, Headset } from 'lucide-react'
 import Link from 'next/link'
 
+import { useAuth } from '@/features/auth/hooks/useAuth'
+
 import { NavMenu } from '@/shared/components/custom-ui/nav-menu/NavMenu'
 import { UserInfo } from '@/shared/components/custom-ui/user-info/UserInfo'
 import { Button } from '@/shared/components/ui/button'
@@ -13,6 +15,8 @@ import { navMenuItems } from './nav.data'
 import { IconLogo } from '@/shared/ui/icons/IconLogo'
 
 export function Header() {
+  const { user } = useAuth()
+
   return (
     <header className="flex items-center justify-between gap-2 p-5">
       <div className="flex items-center gap-7">
@@ -43,8 +47,8 @@ export function Header() {
 
         <UserInfo
           avatarUrl="https://avatars.githubusercontent.com/u/9839363"
-          name="Yunis"
-          email="yunis@gmail.com"
+          name={'Anonymous'}
+          email={user?.email || ''}
         />
       </div>
     </header>
