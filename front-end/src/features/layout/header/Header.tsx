@@ -1,13 +1,20 @@
 'use client'
 
-import { Bell, Headset } from 'lucide-react'
+import { Bell, Headset, Settings, User } from 'lucide-react'
 import Link from 'next/link'
 
 import { useAuth } from '@/features/auth/hooks/useAuth'
+import { Logout } from '@/features/auth/ui/Logout'
 
 import { NavMenu } from '@/shared/components/custom-ui/nav-menu/NavMenu'
 import { UserInfo } from '@/shared/components/custom-ui/user-info/UserInfo'
 import { Button } from '@/shared/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/shared/components/ui/dropdown-menu'
 
 import { PAGES } from '@/shared/config/page.config'
 
@@ -45,11 +52,30 @@ export function Header() {
           <Bell />
         </Button>
 
-        <UserInfo
-          avatarUrl="https://avatars.githubusercontent.com/u/9839363"
-          name={'Anonymous'}
-          email={user?.email || ''}
-        />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost">
+              <UserInfo
+                avatarUrl="https://avatars.githubusercontent.com/u/9839363"
+                name={'Anonymous'}
+                email={user?.email || ''}
+              />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <User />
+              Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Settings />
+              Settings
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Logout />
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   )
