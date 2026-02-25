@@ -71,9 +71,7 @@ export function Header() {
               <Settings />
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Logout />
-            </DropdownMenuItem>
+            <Logout />
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

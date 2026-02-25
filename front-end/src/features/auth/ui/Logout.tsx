@@ -5,6 +5,7 @@ import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/shared/components/ui/button'
+import { DropdownMenuItem } from '@/shared/components/ui/dropdown-menu'
 
 import { PAGES } from '@/shared/config/page.config'
 
@@ -27,13 +28,12 @@ export function Logout() {
   }
 
   return (
-    <Button
-      variant="ghost"
+    <DropdownMenuItem
       onClick={handleLogout}
       disabled={loading}
     >
       <LogOut />
       Logout
-    </Button>
+    </DropdownMenuItem>
   )
 }
