@@ -17,14 +17,14 @@ type Documents = {
     "query GetNewTokens {\n  newTokens {\n    user {\n      id\n    }\n  }\n}": typeof types.GetNewTokensDocument,
     "mutation Login($data: AuthInput!) {\n  login(data: $data) {\n    user {\n      id\n      email\n      role\n    }\n  }\n}": typeof types.LoginDocument,
     "mutation Logout {\n  logout\n}": typeof types.LogoutDocument,
-    "query Me {\n  me {\n    email\n    id\n    role\n  }\n}": typeof types.MeDocument,
+    "query Me {\n  me {\n    email\n    id\n    role\n    profile {\n      fullName\n      age\n      gender\n      bio\n    }\n  }\n}": typeof types.MeDocument,
     "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      id\n      email\n      role\n    }\n  }\n}": typeof types.RegisterDocument,
 };
 const documents: Documents = {
     "query GetNewTokens {\n  newTokens {\n    user {\n      id\n    }\n  }\n}": types.GetNewTokensDocument,
     "mutation Login($data: AuthInput!) {\n  login(data: $data) {\n    user {\n      id\n      email\n      role\n    }\n  }\n}": types.LoginDocument,
     "mutation Logout {\n  logout\n}": types.LogoutDocument,
-    "query Me {\n  me {\n    email\n    id\n    role\n  }\n}": types.MeDocument,
+    "query Me {\n  me {\n    email\n    id\n    role\n    profile {\n      fullName\n      age\n      gender\n      bio\n    }\n  }\n}": types.MeDocument,
     "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      id\n      email\n      role\n    }\n  }\n}": types.RegisterDocument,
 };
 
@@ -57,7 +57,7 @@ export function graphql(source: "mutation Logout {\n  logout\n}"): (typeof docum
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query Me {\n  me {\n    email\n    id\n    role\n  }\n}"): (typeof documents)["query Me {\n  me {\n    email\n    id\n    role\n  }\n}"];
+export function graphql(source: "query Me {\n  me {\n    email\n    id\n    role\n    profile {\n      fullName\n      age\n      gender\n      bio\n    }\n  }\n}"): (typeof documents)["query Me {\n  me {\n    email\n    id\n    role\n    profile {\n      fullName\n      age\n      gender\n      bio\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -3,10 +3,10 @@ import type { Metadata } from 'next'
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
 export const metadata: Metadata = {
-  title: 'Dashboard',
+  title: 'Recipes',
   ...NO_INDEX_PAGE
 }
 
-export default function Page() {
-  return <div>Dashboard</div>
+export default function RecipesPage() {
+  return <div>Recipes</div>
 }

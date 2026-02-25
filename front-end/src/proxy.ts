@@ -26,6 +26,11 @@ export async function proxy(req: NextRequest, res: NextResponse) {
     return NextResponse.redirect(new URL(PAGES.LOGIN, req.url))
   }
 
+  const isForum = req.nextUrl.pathname.includes(PAGES.FORUM)
+  if (isForum && verifiedData.role !== 'ADMIN') {
+    return NextResponse.redirect(new URL(PAGES.DASHBOARD, req.url))
+  }
+
   return NextResponse.next()
 }
 

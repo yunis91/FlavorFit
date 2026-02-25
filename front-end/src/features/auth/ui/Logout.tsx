@@ -4,7 +4,6 @@ import { useApolloClient, useMutation } from '@apollo/client/react'
 import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
-import { Button } from '@/shared/components/ui/button'
 import { DropdownMenuItem } from '@/shared/components/ui/dropdown-menu'
 
 import { PAGES } from '@/shared/config/page.config'

@@ -2,6 +2,7 @@
 
 import { Bell, Headset, Settings, User } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { useAuth } from '@/features/auth/hooks/useAuth'
 import { Logout } from '@/features/auth/ui/Logout'
@@ -23,6 +24,7 @@ import { IconLogo } from '@/shared/ui/icons/IconLogo'
 
 export function Header() {
   const { user } = useAuth()
+  const router = useRouter()
 
   return (
     <header className="flex items-center justify-between gap-2 p-5">
@@ -54,22 +56,21 @@ export function Header() {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost">
+            <Button
+              variant="simple"
+              size="simple"
+            >
               <UserInfo
                 avatarUrl="https://avatars.githubusercontent.com/u/9839363"
-                name={'Anonymous'}
+                name={user?.profile?.fullName || 'Anonymous'}
                 email={user?.email || ''}
               />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push(PAGES.PROFILE)}>
               <User />
               Profile
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Settings />
-              Settings
             </DropdownMenuItem>
             <Logout />
           </DropdownMenuContent>

@@ -1,10 +1,9 @@
 'use server'
 
 import { CombinedGraphQLErrors } from '@apollo/client'
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest } from 'next/server'
 
 import { GRAPHQL_SERVER_URL } from '@/shared/config/api.config'
-import { PAGES } from '@/shared/config/page.config'
 
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/shared/constants/app.constants'
 

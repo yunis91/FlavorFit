@@ -16,9 +16,9 @@ export function UserInfo({ avatarUrl, name, email }: Props) {
         height={36}
         className="rounded-full"
       />
-      <div>
+      <div className="flex flex-col items-start">
         <p className="text-sm font-medium">{name}</p>
-        <p className="max-w-[80px] overflow-hidden text-xs text-ellipsis text-gray-500">
+        <p className="max-w-[90px] overflow-hidden text-xs text-ellipsis text-gray-500">
           {email}
         </p>
       </div>
