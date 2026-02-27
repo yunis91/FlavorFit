@@ -1,177 +1,191 @@
 import {
-	BadRequestException,
-	Injectable,
-	NotFoundException
-} from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import { JwtService } from '@nestjs/jwt'
-import { hash, verify } from 'argon2'
-import { Response } from 'express'
-import { PrismaService } from 'src/prisma/prisma.service'
-import { UsersService } from 'src/users/users.service'
-import { isDev } from 'src/utils/is-dev.util'
-import { AuthInput } from './auth.input'
-import { TAuthTokenData } from './auth.interface'
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import { JwtService } from "@nestjs/jwt";
+import { hash, verify } from "argon2";
+import { Response } from "express";
+import { PrismaService } from "src/prisma/prisma.service";
+import { UsersService } from "src/users/users.service";
+import { isDev } from "src/utils/is-dev.util";
+import { AuthInput } from "./inputs/auth.input";
+import { TAuthTokenData } from "./auth.interface";
+import { generateToken } from "src/utils/generate-toke.util";
+import { EmailService } from "src/email/email.service";
 
 @Injectable()
 export class AuthService {
-	constructor(
-		private prisma: PrismaService,
-		private configService: ConfigService,
-		private jwt: JwtService,
-		private usersService: UsersService
-	) {}
+  constructor(
+    private prisma: PrismaService,
+    private configService: ConfigService,
+    private jwt: JwtService,
+    private usersService: UsersService,
+    private emailService: EmailService,
+  ) {}
 
-	private readonly EXPIRE_HOURS_ACCESS_TOKEN = 1
-	readonly ACCESS_TOKEN_NAME = 'accessToken' as const
+  private readonly EXPIRE_HOURS_ACCESS_TOKEN = 1;
+  readonly ACCESS_TOKEN_NAME = "accessToken" as const;
 
-	private readonly EXPIRE_DAYS_REFRESH_TOKEN = 3
-	readonly REFRESH_TOKEN_NAME = 'refreshToken' as const
+  private readonly EXPIRE_DAYS_REFRESH_TOKEN = 3;
+  readonly REFRESH_TOKEN_NAME = "refreshToken" as const;
 
-	async register(input: AuthInput) {
-		try {
-			const email = input.email.toLowerCase()
-			const existingUser = await this.prisma.user.findFirst({
-				where: {
-					email: {
-						equals: email,
-						mode: 'insensitive'
-					}
-				}
-			})
+  async register(input: AuthInput) {
+    try {
+      const email = input.email.toLowerCase();
+      const existingUser = await this.prisma.user.findFirst({
+        where: {
+          email: {
+            equals: email,
+            mode: "insensitive",
+          },
+        },
+      });
 
-			if (existingUser) {
-				throw new BadRequestException('User with this email already exists')
-			}
+      if (existingUser) {
+        throw new BadRequestException("User with this email already exists");
+      }
 
-			/* TODO: Move to user service */
-			const user = await this.prisma.user.create({
-				data: {
-					email: email,
-					password: await hash(input.password)
-				}
-			})
+      const emailVerificationToken = generateToken();
 
-			const tokens = this.generateTokens({
-				id: user.id,
-				role: user.role
-			})
+      /* TODO: Move to user service */
+      const user = await this.prisma.user.create({
+        data: {
+          email: email,
+          password: await hash(input.password),
+          emailVerificationToken,
+          emailVerificationTokenExpiresAt: new Date(Date.now() + 3600000),
+        },
+      });
 
-			return { user, ...tokens }
-		} catch (error) {
-			throw new BadRequestException('Registration failed: ' + error)
-		}
-	}
+      const tokens = this.generateTokens({
+        id: user.id,
+        role: user.role,
+      });
 
-	async login(input: AuthInput) {
-		const user = await this.validateUser(input)
+      const verificationUrl = `${this.configService.get("CLEINT_URL")}/verify-email?token=${emailVerificationToken}`;
 
-		const tokens = this.generateTokens({
-			id: user.id,
-			role: user.role
-		})
+      await this.emailService.sendVerificationEmail(
+        user.email,
+        verificationUrl,
+      );
 
-		return { user, ...tokens }
-	}
+      return { user, ...tokens };
+    } catch (error) {
+      throw new BadRequestException("Registration failed: " + error);
+    }
+  }
 
-	async getNewTokens(refreshToken: string) {
-		const result =
-			await this.jwt.verifyAsync<Pick<TAuthTokenData, 'id'>>(refreshToken)
-		if (!result) throw new BadRequestException('Invalid refresh token')
+  async login(input: AuthInput) {
+    const user = await this.validateUser(input);
 
-		const user = await this.usersService.findById(result.id)
+    const tokens = this.generateTokens({
+      id: user.id,
+      role: user.role,
+    });
 
-		if (!user) {
-			throw new NotFoundException('User not found')
-		}
+    return { user, ...tokens };
+  }
 
-		const tokens = this.generateTokens({
-			id: user.id,
-			role: user.role
-		})
+  async getNewTokens(refreshToken: string) {
+    const result =
+      await this.jwt.verifyAsync<Pick<TAuthTokenData, "id">>(refreshToken);
+    if (!result) throw new BadRequestException("Invalid refresh token");
 
-		return {
-			user,
-			...tokens
-		}
-	}
+    const user = await this.usersService.findById(result.id);
 
-	private async validateUser(input: AuthInput) {
-		const email = input.email
+    if (!user) {
+      throw new NotFoundException("User not found");
+    }
 
-		const user = await this.usersService.findByEmail(email)
+    const tokens = this.generateTokens({
+      id: user.id,
+      role: user.role,
+    });
 
-		if (!user) {
-			throw new NotFoundException('Invalid email or password')
-		}
+    return {
+      user,
+      ...tokens,
+    };
+  }
 
-		const isPasswordValid = await verify(user.password, input.password)
+  private async validateUser(input: AuthInput) {
+    const email = input.email;
 
-		if (!isPasswordValid) {
-			throw new NotFoundException('Invalid email or password')
-		}
+    const user = await this.usersService.findByEmail(email);
 
-		return user
-	}
+    if (!user) {
+      throw new NotFoundException("Invalid email or password");
+    }
 
-	private generateTokens(data: TAuthTokenData) {
-		const accessToken = this.jwt.sign(data, {
-			expiresIn: '1h'
-		})
+    const isPasswordValid = await verify(user.password, input.password);
 
-		const refreshToken = this.jwt.sign(
-			{
-				id: data.id
-			},
-			{
-				expiresIn: `${this.EXPIRE_DAYS_REFRESH_TOKEN}d`
-			}
-		)
+    if (!isPasswordValid) {
+      throw new NotFoundException("Invalid email or password");
+    }
 
-		return { accessToken, refreshToken }
-	}
+    return user;
+  }
 
-	toggleAccessTokenCookie(res: Response, token: string | null) {
-		this.toggleAuthTokenCookie({
-			response: res,
-			name: this.ACCESS_TOKEN_NAME,
-			token,
-			expires: new Date(Date.now() + this.EXPIRE_HOURS_ACCESS_TOKEN * 3600000)
-		})
-	}
+  private generateTokens(data: TAuthTokenData) {
+    const accessToken = this.jwt.sign(data, {
+      expiresIn: "1h",
+    });
 
-	toggleRefreshTokenCookie(res: Response, token: string | null) {
-		this.toggleAuthTokenCookie({
-			response: res,
-			name: this.REFRESH_TOKEN_NAME,
-			token,
-			expires: new Date(
-				Date.now() + this.EXPIRE_DAYS_REFRESH_TOKEN * 24 * 60 * 60 * 1000
-			)
-		})
-	}
+    const refreshToken = this.jwt.sign(
+      {
+        id: data.id,
+      },
+      {
+        expiresIn: `${this.EXPIRE_DAYS_REFRESH_TOKEN}d`,
+      },
+    );
 
-	private toggleAuthTokenCookie({
-		expires,
-		name,
-		response,
-		token
-	}: {
-		response: Response
-		name: AuthService['ACCESS_TOKEN_NAME'] | AuthService['REFRESH_TOKEN_NAME']
-		token: string | null
-		expires: Date
-	}) {
-		const isRemoveCookie = !token
+    return { accessToken, refreshToken };
+  }
 
-		const expiresIn = isRemoveCookie ? new Date(0) : expires
+  toggleAccessTokenCookie(res: Response, token: string | null) {
+    this.toggleAuthTokenCookie({
+      response: res,
+      name: this.ACCESS_TOKEN_NAME,
+      token,
+      expires: new Date(Date.now() + this.EXPIRE_HOURS_ACCESS_TOKEN * 3600000),
+    });
+  }
 
-		response.cookie(name, token || '', {
-			httpOnly: true,
-			domain: 'localhost',
-			expires: expiresIn,
-			sameSite: isDev(this.configService) ? 'none' : 'strict',
-			secure: true
-		})
-	}
+  toggleRefreshTokenCookie(res: Response, token: string | null) {
+    this.toggleAuthTokenCookie({
+      response: res,
+      name: this.REFRESH_TOKEN_NAME,
+      token,
+      expires: new Date(
+        Date.now() + this.EXPIRE_DAYS_REFRESH_TOKEN * 24 * 60 * 60 * 1000,
+      ),
+    });
+  }
+
+  private toggleAuthTokenCookie({
+    expires,
+    name,
+    response,
+    token,
+  }: {
+    response: Response;
+    name: AuthService["ACCESS_TOKEN_NAME"] | AuthService["REFRESH_TOKEN_NAME"];
+    token: string | null;
+    expires: Date;
+  }) {
+    const isRemoveCookie = !token;
+
+    const expiresIn = isRemoveCookie ? new Date(0) : expires;
+
+    response.cookie(name, token || "", {
+      httpOnly: true,
+      domain: "localhost",
+      expires: expiresIn,
+      sameSite: isDev(this.configService) ? "none" : "strict",
+      secure: true,
+    });
+  }
 }
