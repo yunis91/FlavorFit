@@ -9,6 +9,7 @@ import { Logout } from '@/features/auth/ui/Logout'
 
 import { NavMenu } from '@/shared/components/custom-ui/nav-menu/NavMenu'
 import { UserInfo } from '@/shared/components/custom-ui/user-info/UserInfo'
+import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
 import {
   DropdownMenu,
@@ -53,6 +54,12 @@ export function Header() {
         >
           <Bell />
         </Button>
+
+        {!user?.isEmailVerified ? (
+          <Badge variant="destructive">Email Unverified</Badge>
+        ) : (
+          ''
+        )}
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

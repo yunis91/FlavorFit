@@ -1,19 +1,9 @@
 'use client'
 
-import {
-  Dna,
-  Info,
-  Mail,
-  Mars,
-  Settings,
-  User,
-  Venus,
-  VenusAndMars
-} from 'lucide-react'
+import { Dna, Info, Mail, Mars, User, Venus, VenusAndMars } from 'lucide-react'
 import type { Metadata } from 'next'
 
 import { useAuth } from '@/features/auth/hooks/useAuth'
-import { Logout } from '@/features/auth/ui/Logout'
 
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 

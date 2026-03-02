@@ -1,8 +1,11 @@
 'use client'
 
 import { useApolloClient, useMutation } from '@apollo/client/react'
+import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -31,6 +34,8 @@ import {
   RegisterMutationVariables
 } from '@/__generated__/graphql'
 
+import { useCaptcha } from '../hooks/useCaptcha'
+import { CaptchaField } from '../ui/CaptchaField'
 import { isEmailRegex } from '../utils/is-email.regex'
 
 import { AuthChangeTypeForm } from './AuthChangeTypeForm'
@@ -54,6 +59,8 @@ export function AuthForm({ type }: Props) {
       password: ''
     }
   })
+
+  const { ref, captchaToken, setCaptchaToken, reset, isValided } = useCaptcha()
 
   const client = useApolloClient()
   const router = useRouter()
@@ -82,13 +89,25 @@ export function AuthForm({ type }: Props) {
       toast.error(error.message, {
         id: 'auth-success'
       })
+      reset()
     }
   })
 
   const handleAuth = async (data: AuthInput) => {
+    if (!isValided) {
+      toast.error('Please complete the CAPTCHA challenge', {
+        id: 'captcha-error'
+      })
+      return
+    }
     auth({
       variables: {
         data
+      },
+      context: {
+        headers: {
+          'cf-turnstile-token': captchaToken
+        }
       }
     })
   }
@@ -135,7 +154,19 @@ export function AuthForm({ type }: Props) {
                 )}
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="password">Password</Label>
+                <div className="flex items-center">
+                  <Label htmlFor="password">Password</Label>
+                  {isLogin ? (
+                    <Link
+                      className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                      href={PAGES.FORGOT_PASSWORD}
+                    >
+                      Forgot your password?
+                    </Link>
+                  ) : (
+                    ''
+                  )}
+                </div>
                 <Input
                   {...register('password', {
                     required: true,
@@ -153,6 +184,13 @@ export function AuthForm({ type }: Props) {
                 {errors.password && (
                   <p className="text-destructive">{errors.password.message}</p>
                 )}
+              </div>
+              <div className="flex scale-80 justify-center pt-2">
+                <CaptchaField
+                  ref={ref} 
+                  onSuccess={setCaptchaToken}
+                  onExpire={() => setCaptchaToken(null)}
+                />
               </div>
             </div>
           </CardContent>

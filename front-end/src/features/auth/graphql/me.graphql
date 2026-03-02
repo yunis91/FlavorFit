@@ -3,6 +3,7 @@ query Me {
     email
     id
     role
+    isEmailVerified
     profile {
       fullName
       age

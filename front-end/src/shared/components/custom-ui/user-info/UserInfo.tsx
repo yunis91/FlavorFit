@@ -1,5 +1,11 @@
 import Image from 'next/image'
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage
+} from '@/shared/components/ui/avatar'
+
 interface Props {
   avatarUrl: string
   name: string
@@ -9,13 +15,14 @@ interface Props {
 export function UserInfo({ avatarUrl, name, email }: Props) {
   return (
     <div className="flex items-center gap-2">
-      <Image
-        src={avatarUrl}
-        alt={name}
-        width={36}
-        height={36}
-        className="rounded-full"
-      />
+      <Avatar>
+        <AvatarImage
+          src={avatarUrl}
+          alt={name}
+        />
+        <AvatarFallback>FF</AvatarFallback>
+      </Avatar>
+
       <div className="flex flex-col items-start">
         <p className="text-sm font-medium">{name}</p>
         <p className="max-w-[90px] overflow-hidden text-xs text-ellipsis text-gray-500">

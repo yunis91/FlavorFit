@@ -4,6 +4,13 @@ mutation Login($data: AuthInput!) {
       id
       email
       role
+      isEmailVerified
+      profile {
+        fullName
+        age
+        gender
+        bio
+      }
     }
   }
 }

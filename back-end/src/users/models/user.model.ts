@@ -1,28 +1,31 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql'
-import { Role } from 'prisma/generated/enums'
-import { BodyMeasurementModel } from './body-measurement.input'
-import { ProfileModel } from './profile.model'
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Role } from "prisma/generated/enums";
+import { BodyMeasurementModel } from "./body-measurement.input";
+import { ProfileModel } from "./profile.model";
 
 @ObjectType()
 export class UserModel {
-	@Field(() => ID)
-	id!: string
+  @Field(() => ID)
+  id!: string;
 
-	@Field(() => String)
-	email!: string
+  @Field(() => String)
+  email!: string;
 
-	@Field(() => Role)
-	role!: Role
+  @Field(() => Role)
+  role!: Role;
 
-	@Field(() => ProfileModel, { nullable: true })
-	profile?: ProfileModel | null
+  @Field(() => Boolean)
+  isEmailVerified!: boolean;
 
-	@Field(() => BodyMeasurementModel, { nullable: true })
-	measurements?: BodyMeasurementModel | null
+  @Field(() => ProfileModel, { nullable: true })
+  profile?: ProfileModel | null;
 
-	@Field(() => Date)
-	createdAt!: Date
+  @Field(() => BodyMeasurementModel, { nullable: true })
+  measurements?: BodyMeasurementModel | null;
 
-	@Field(() => Date)
-	updatedAt!: Date
+  @Field(() => Date)
+  createdAt!: Date;
+
+  @Field(() => Date)
+  updatedAt!: Date;
 }
