@@ -28,7 +28,7 @@ export function Header() {
   const router = useRouter()
 
   return (
-    <header className="flex items-center justify-between gap-2 p-5">
+    <header className="flex items-center justify-between gap-2">
       <div className="flex items-center gap-7">
         <Link
           href={PAGES.DASHBOARD}

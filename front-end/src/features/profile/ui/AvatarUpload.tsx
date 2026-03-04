@@ -28,7 +28,7 @@ export function AvatarUpload({ value, onChange }: Props) {
 
     const data = await res.json()
 
-    onChange(data[0].url)
+    onChange(data.url)
 
     setLoadinbg(false)
   }

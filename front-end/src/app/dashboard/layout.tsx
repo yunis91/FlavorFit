@@ -4,9 +4,9 @@ import { Header } from '@/features/layout/header/Header'
 
 export default function Layout({ children }: PropsWithChildren<unknown>) {
   return (
-    <div>
+    <div className="px-6 py-5">
       <Header />
-      <main className="m-5 max-w-full rounded-3xl bg-white p-6">
+      <main className="mt-10 max-w-full rounded-3xl bg-white p-6">
         {children}
       </main>
     </div>
