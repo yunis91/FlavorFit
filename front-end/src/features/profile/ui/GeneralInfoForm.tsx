@@ -1,17 +1,21 @@
-import { Mail, User, UserCircle } from 'lucide-react'
-import { UseFormReturn } from 'react-hook-form'
+import { Mail, Mars, User, UserCircle } from 'lucide-react'
+import { Controller, UseFormReturn } from 'react-hook-form'
 
+import { SelectLabel } from '@/shared/components/custom-ui/SelectLabel'
 import { Input } from '@/shared/components/ui/input'
+import { Label } from '@/shared/components/ui/label'
 import { Textarea } from '@/shared/components/ui/textarea'
 
-import { IProfileForm } from '../types/profile-update.types'
+import { Gender } from '@/__generated__/graphql'
+
+import { TProfileForm } from '../types/profile-update.types'
 
 import { AvatarUpload } from './AvatarUpload'
 
 export function GeneralInfoForm({
   form
 }: {
-  form: UseFormReturn<IProfileForm, unknown, IProfileForm>
+  form: UseFormReturn<TProfileForm, unknown, TProfileForm>
 }) {
   const { register } = form
 
@@ -20,52 +24,97 @@ export function GeneralInfoForm({
       <h2 className="mb-6 text-lg font-semibold">General Information</h2>
 
       <div className="space-y-4">
-        <AvatarUpload
-          onChange={url =>
-            form.setValue('avatarUrl', url, { shouldDirty: true })
-          }
-          value={form.watch('avatarUrl') || undefined}
-        />
+        <div className="flex gap-5">
+          <AvatarUpload
+            onChange={url => form.setValue('avatarUrl', url)}
+            value={form.watch('avatarUrl') || undefined}
+          />
+          <div className="grid w-full gap-2">
+            <Label htmlFor="fullName">Full name</Label>
+            <div className="relative">
+              <User
+                size={16}
+                className="absolute top-3 left-3 opacity-50"
+              />
+              <Input
+                className="pl-9"
+                placeholder="Full name"
+                {...register('profile.fullName')}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email</Label>
+          <div className="relative">
+            <Mail
+              size={16}
+              className="absolute top-3 left-3 opacity-50"
+            />
+            <Input
+              className="pl-9"
+              placeholder="Email"
+              {...register('email')}
+            />
+          </div>
+        </div>
 
-        <label className="relative block">
-          <User
-            size={16}
-            className="absolute top-3 left-3 opacity-50"
-          />
-          <Input
-            className="pl-9"
-            placeholder="Full name"
-            {...register('fullName')}
-          />
-        </label>
-        <label className="relative block">
-          <Mail
-            size={16}
-            className="absolute top-3 left-3 opacity-50"
-          />
-          <Input
-            className="pl-9"
-            placeholder="Email"
-            {...register('email')}
-          />
-        </label>
-        <label className="relative block">
-          <UserCircle
-            size={16}
-            className="absolute top-3 left-3 opacity-50"
-          />
-          <Input
-            className="pl-9"
-            placeholder="Age"
-            {...register('age')}
-          />
-        </label>
-        <div className="relative">
-          <Textarea
-            className="h-18 w-full resize-none rounded-md border bg-white/85 p-3 font-mono"
-            placeholder="Bio"
-            {...register('bio')}
-          />
+        <div className="grid gap-2">
+          <Label htmlFor="age">Age</Label>
+          <div className="relative">
+            <UserCircle
+              size={16}
+              className="absolute top-3 left-3 opacity-50"
+            />
+            <Input
+              className="pl-9"
+              placeholder="Age"
+              type="number"
+              {...register('profile.age', {
+                setValueAs: value => (value === '' ? undefined : Number(value))
+              })}
+            />
+          </div>
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="gender">Gender</Label>
+          <div className="relative">
+            <Mars
+              size={16}
+              className="absolute top-3 left-3 opacity-50"
+            />
+            <Controller
+              control={form.control}
+              name="profile.gender"
+              render={({ field }) => (
+                <SelectLabel
+                  value={field.value}
+                  onChange={field.onChange}
+                  label="Gender"
+                  options={[
+                    {
+                      label: 'Male',
+                      value: Gender.Male
+                    },
+                    {
+                      label: 'Female',
+                      value: Gender.Female
+                    }
+                  ]}
+                />
+              )}
+            />
+          </div>
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="bio">Bio</Label>
+          <div className="relative">
+            <Textarea
+              className="h-18 w-full resize-none rounded-md border bg-white/85 p-3 font-mono"
+              placeholder="Bio"
+              {...register('profile.bio')}
+            />
+          </div>
         </div>
       </div>
     </div>

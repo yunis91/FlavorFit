@@ -34,7 +34,7 @@ export function AvatarUpload({ value, onChange }: Props) {
   }
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="relative inline-flex items-center gap-3">
       <Image
         src={value || '/images/avatar-placeholder.png'}
         width={48}
@@ -43,7 +43,7 @@ export function AvatarUpload({ value, onChange }: Props) {
         className="rounded-full object-cover"
       />
 
-      <label>
+      <label className="absolute -top-2 -right-2 z-10">
         <input
           type="file"
           hidden
@@ -54,8 +54,8 @@ export function AvatarUpload({ value, onChange }: Props) {
           }}
         />
         <Button
-          value="soft"
-          size="sm"
+          value="simple"
+          size="xs"
           asChild
           disabled={loading}
         >
