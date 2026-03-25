@@ -1,5 +1,5 @@
-import { Mail, Mars, User, UserCircle } from 'lucide-react'
-import { Controller, UseFormReturn } from 'react-hook-form'
+import { Mail, Mars, User, UserCircle, Venus } from 'lucide-react'
+import { Controller, UseFormReturn, useWatch } from 'react-hook-form'
 
 import { SelectLabel } from '@/shared/components/custom-ui/SelectLabel'
 import { Input } from '@/shared/components/ui/input'
@@ -18,6 +18,12 @@ export function GeneralInfoForm({
   form: UseFormReturn<TProfileForm, unknown, TProfileForm>
 }) {
   const { register } = form
+  const gender = useWatch({
+    control: form.control,
+    name: 'profile.gender'
+  })
+
+  const GenderIcon = gender === Gender.Female ? Venus : Mars
 
   return (
     <div className="rounded-xl border bg-white p-6">
@@ -79,7 +85,7 @@ export function GeneralInfoForm({
         <div className="grid gap-2">
           <Label htmlFor="gender">Gender</Label>
           <div className="relative">
-            <Mars
+            <GenderIcon
               size={16}
               className="absolute top-3 left-3 opacity-50"
             />

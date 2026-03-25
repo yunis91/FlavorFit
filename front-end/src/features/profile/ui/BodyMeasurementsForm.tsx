@@ -1,12 +1,12 @@
 import { Goal, GoalIcon, Ruler, UserCircle, Weight } from 'lucide-react'
 import Image from 'next/image'
-import { Controller, UseFormReturn } from 'react-hook-form'
+import { Controller, UseFormReturn, useWatch } from 'react-hook-form'
 
 import { SelectLabel } from '@/shared/components/custom-ui/SelectLabel'
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
 
-import { ActivityLevel, NutritionGoal } from '@/__generated__/graphql'
+import { ActivityLevel, Gender, NutritionGoal } from '@/__generated__/graphql'
 
 import { TProfileForm } from '../types/profile-update.types'
 
@@ -16,14 +16,22 @@ export function BodyMeasurementsForm({
   form: UseFormReturn<TProfileForm, unknown, TProfileForm>
 }) {
   const { register } = form
+  const gender = useWatch({
+    control: form.control,
+    name: 'profile.gender'
+  })
+
+  const isFemale = gender === Gender.Female
 
   return (
     <div className="col-span-2 flex w-full items-start gap-6 rounded-xl border bg-white p-6">
       <Image
         width={350}
         height={450}
-        src="/images/graphics/male.svg"
-        alt="Male"
+        src={
+          isFemale ? '/images/graphics/female.svg' : '/images/graphics/male.svg'
+        }
+        alt={isFemale ? 'Female' : 'Male'}
       />
       <div className="">
         <h2 className="mb-6 text-lg font-semibold">Body measurements</h2>
@@ -147,81 +155,81 @@ export function BodyMeasurementsForm({
                 })}
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="gender">Nutrition Goal</Label>
-              <div className="relative">
-                <GoalIcon
-                  size={16}
-                  className="absolute top-3 left-3 opacity-50"
-                />
-                <Controller
-                  control={form.control}
-                  name="measurements.nutritionGoal"
-                  render={({ field }) => (
-                    <SelectLabel
-                      value={field.value}
-                      onChange={field.onChange}
-                      label="Set your nutrition goal"
-                      options={[
-                        {
-                          label: 'Lose weight',
-                          value: NutritionGoal.WeightLoss
-                        },
-                        {
-                          label: 'Female',
-                          value: NutritionGoal.Maintenance
-                        },
-                        {
-                          label: 'Gain muscle',
-                          value: NutritionGoal.MuscleGain
-                        }
-                      ]}
-                    />
-                  )}
-                />
-              </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="gender">Nutrition Goal</Label>
+            <div className="relative">
+              <GoalIcon
+                size={16}
+                className="absolute top-3 left-3 opacity-50"
+              />
+              <Controller
+                control={form.control}
+                name="measurements.nutritionGoal"
+                render={({ field }) => (
+                  <SelectLabel
+                    value={field.value}
+                    onChange={field.onChange}
+                    label="Set your nutrition goal"
+                    options={[
+                      {
+                        label: 'Lose weight',
+                        value: NutritionGoal.WeightLoss
+                      },
+                      {
+                        label: 'Female',
+                        value: NutritionGoal.Maintenance
+                      },
+                      {
+                        label: 'Gain muscle',
+                        value: NutritionGoal.MuscleGain
+                      }
+                    ]}
+                  />
+                )}
+              />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="activityLevel">Activity Level</Label>
-              <div className="relative">
-                <GoalIcon
-                  size={16}
-                  className="absolute top-3 left-3 opacity-50"
-                />
-                <Controller
-                  control={form.control}
-                  name="measurements.activityLevel"
-                  render={({ field }) => (
-                    <SelectLabel
-                      value={field.value}
-                      onChange={field.onChange}
-                      label="Set your activity level"
-                      options={[
-                        {
-                          label: 'Lightly active',
-                          value: ActivityLevel.Light
-                        },
-                        {
-                          label: 'Moderately active',
-                          value: ActivityLevel.Moderate
-                        },
-                        {
-                          label: 'Active',
-                          value: ActivityLevel.Active
-                        },
-                        {
-                          label: 'Sedentary',
-                          value: ActivityLevel.Sedentary
-                        },
-                        {
-                          label: 'Very active',
-                          value: ActivityLevel.VeryActive
-                        }
-                      ]}
-                    />
-                  )}
-                />
-              </div>
+          </div>
+          <div className="grid gap-2">
+            <Label htmlFor="activityLevel">Activity Level</Label>
+            <div className="relative">
+              <GoalIcon
+                size={16}
+                className="absolute top-3 left-3 opacity-50"
+              />
+              <Controller
+                control={form.control}
+                name="measurements.activityLevel"
+                render={({ field }) => (
+                  <SelectLabel
+                    value={field.value}
+                    onChange={field.onChange}
+                    label="Set your activity level"
+                    options={[
+                      {
+                        label: 'Lightly active',
+                        value: ActivityLevel.Light
+                      },
+                      {
+                        label: 'Moderately active',
+                        value: ActivityLevel.Moderate
+                      },
+                      {
+                        label: 'Active',
+                        value: ActivityLevel.Active
+                      },
+                      {
+                        label: 'Sedentary',
+                        value: ActivityLevel.Sedentary
+                      },
+                      {
+                        label: 'Very active',
+                        value: ActivityLevel.VeryActive
+                      }
+                    ]}
+                  />
+                )}
+              />
             </div>
           </div>
         </div>

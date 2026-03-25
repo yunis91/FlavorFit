@@ -37,13 +37,13 @@ export function AvatarUpload({ value, onChange }: Props) {
     <div className="relative inline-flex items-center gap-3">
       <Image
         src={value || '/images/avatar-placeholder.png'}
-        width={48}
-        height={48}
+        width={64}
+        height={64}
         alt="avatar"
-        className="rounded-full object-cover"
+        className="h-16 w-16 flex-none rounded-full object-cover"
       />
 
-      <label className="absolute -top-2 -right-2 z-10">
+      <label className="absolute -right-2 bottom-0 z-10">
         <input
           type="file"
           hidden
@@ -57,6 +57,7 @@ export function AvatarUpload({ value, onChange }: Props) {
           value="simple"
           size="xs"
           asChild
+          className="rounded-full"
           disabled={loading}
         >
           <span>
