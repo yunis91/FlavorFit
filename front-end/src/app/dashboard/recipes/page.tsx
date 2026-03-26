@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+import RecipesDashboard from '@/features/recipes/RecipesDashboard'
+
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
 export const metadata: Metadata = {
@@ -8,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function RecipesPage() {
-  return <div>Recipes</div>
+  return <RecipesDashboard />
 }
