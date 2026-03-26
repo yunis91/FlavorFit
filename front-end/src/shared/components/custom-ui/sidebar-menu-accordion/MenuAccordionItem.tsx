@@ -22,18 +22,18 @@ export function MenuAccordionItem({ item }: Props) {
         </span>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <ul>
+        <ul className="flex flex-col gap-2">
           {item.items.map(child => (
             <li key={child.value}>
-              <button className="flex items-center justify-between">
+              <button className="flex w-full items-center justify-between">
                 <span className="flex items-center gap-1">
                   <CornerDownRight />
                   <span>{child.label}</span>
                 </span>
 
                 {!!child.badgeValue && (
-                  <span className="rounded-full bg-red-200 text-sm text-red-500">
-                    {child.badgeValue}
+                  <span className="min-h-6 min-w-6 rounded-full bg-red-100 px-2 py-0.5 text-sm text-red-500">
+                    + {child.badgeValue}
                   </span>
                 )}
               </button>

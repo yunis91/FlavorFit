@@ -30,7 +30,8 @@ export default function RecipeSidebar() {
               },
               {
                 label: 'Lunch',
-                value: 'Lunch'
+                value: 'Lunch',
+                badgeValue: '1'
               },
               {
                 label: 'Dinner',
