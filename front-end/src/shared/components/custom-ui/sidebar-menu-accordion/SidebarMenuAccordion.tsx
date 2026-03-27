@@ -7,7 +7,7 @@ interface Props {
 
 export function SidebarMenuAccordion({ data }: Props) {
   return (
-    <div className="">
+    <div className="space-y-3">
       {data.map(item => (
         <MenuAccordionItem
           key={item.name}

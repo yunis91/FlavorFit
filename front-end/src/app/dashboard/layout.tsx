@@ -6,9 +6,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
   return (
     <div className="px-6 py-5">
       <Header />
-      <main className="mt-10 max-w-full rounded-3xl bg-white p-6">
-        {children}
-      </main>
+      <main className="mt-10 max-w-full">{children}</main>
     </div>
   )
 }

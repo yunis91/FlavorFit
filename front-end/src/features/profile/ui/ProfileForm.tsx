@@ -59,9 +59,9 @@ export function ProfileForm({ data }: { data: GetProfileQuery }) {
   return (
     <form
       onSubmit={submit}
-      className="space-y-6"
+      className="mt-10 max-w-full rounded-2xl bg-white p-6"
     >
-      <div className="flex justify-between">
+      <div className="mb-4 flex justify-between">
         <div className="flex items-center gap-3">
           <HeadingWithIcon Icon={UserRoundCog}>
             Personal information
