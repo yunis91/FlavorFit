@@ -39,7 +39,7 @@ export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent>
-        <ul className="space-y-2 pt-2 pl-4 text-sm">
+        <ul className="space-y-2 pt-2 pl-4">
           {item.items.map(child => (
             <li
               key={child.value}

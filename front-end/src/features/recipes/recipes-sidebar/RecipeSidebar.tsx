@@ -23,7 +23,7 @@ export default function RecipeSidebar({
   }
 
   return (
-    <div className="w-full max-w-65 rounded-2xl border bg-white p-4">
+    <div className="w-full max-w-70 rounded-2xl border bg-white p-4">
       <div className="mb-5 grid w-full gap-2">
         <div className="relative">
           <Search
