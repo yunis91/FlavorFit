@@ -12,10 +12,10 @@ interface Props {
 }
 
 export function AvatarUpload({ value, onChange }: Props) {
-  const [loading, setLoadinbg] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   async function upload(file: File) {
-    setLoadinbg(true)
+    setLoading(true)
 
     const formData = new FormData()
     formData.append('file', file)
@@ -30,7 +30,7 @@ export function AvatarUpload({ value, onChange }: Props) {
 
     onChange(data.url)
 
-    setLoadinbg(false)
+    setLoading(false)
   }
 
   return (

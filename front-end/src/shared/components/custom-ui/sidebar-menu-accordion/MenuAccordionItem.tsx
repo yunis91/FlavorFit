@@ -9,19 +9,27 @@ import {
 import { Button } from '../../ui/button'
 
 import { ISidebarMenuAccordionItem } from './sidebar-menu-accordion.types'
+import { cn } from '@/shared/utils'
 
 interface Props {
   item: ISidebarMenuAccordionItem
+  activeValue?: string
+  onValueChange?: (value: string) => void
 }
 
-export function MenuAccordionItem({ item }: Props) {
+export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
   return (
     <Collapsible defaultOpen={item.isInitiallyOpen}>
       <CollapsibleTrigger asChild>
         <Button
           variant="ghost"
           size="sm"
-          className="group hover:bg-accent hover:text-accent-foreground aria-expanded:bg-accent flex w-full items-center justify-between opacity-80 transition-none aria-expanded:opacity-100"
+          className={cn(
+            'group hover:bg-accent hover:text-accent-foreground aria-expanded:bg-accent flex w-full items-center justify-between opacity-80 transition-none aria-expanded:opacity-100',
+            {
+              'bg-accent': item.items.some(child => child.value === activeValue)
+            }
+          )}
         >
           <span className="flex items-center gap-2 text-sm font-medium">
             <item.icon size={22} />
@@ -35,9 +43,14 @@ export function MenuAccordionItem({ item }: Props) {
           {item.items.map(child => (
             <li
               key={child.value}
-              className="opacity-50"
+              className={cn('opacity-50', {
+                'opacity-100': activeValue === child.value
+              })}
             >
-              <button className="flex w-full items-center justify-between">
+              <button
+                className="flex w-full items-center justify-between"
+                onClick={() => onValueChange?.(child.value)}
+              >
                 <span className="flex items-center gap-1.5">
                   <CornerDownRight size={16} />
                   <span>{child.label}</span>
