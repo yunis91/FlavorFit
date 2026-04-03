@@ -1,6 +1,7 @@
 'use client'
 
-import { Bell, Headset, Settings, User } from 'lucide-react'
+import { useQuery } from '@apollo/client/react'
+import { Bell, Headset, User } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -9,7 +10,6 @@ import { Logout } from '@/features/auth/ui/Logout'
 
 import { NavMenu } from '@/shared/components/custom-ui/nav-menu/NavMenu'
 import { UserInfo } from '@/shared/components/custom-ui/user-info/UserInfo'
-import { Badge } from '@/shared/components/ui/badge'
 import { Button } from '@/shared/components/ui/button'
 import {
   DropdownMenu,
@@ -20,12 +20,16 @@ import {
 
 import { PAGES } from '@/shared/config/page.config'
 
+import { GetProfileDocument } from '@/__generated__/graphql'
+
 import { navMenuItems } from './nav.data'
 import { IconLogo } from '@/shared/ui/icons/IconLogo'
 
 export function Header() {
   const { user } = useAuth()
   const router = useRouter()
+  const { data: userData } = useQuery(GetProfileDocument)
+  const avatarUrl = userData?.me?.avatarUrl || '/images/avatar-placeholder.png'
 
   return (
     <header className="flex items-center justify-between gap-2">
@@ -55,12 +59,6 @@ export function Header() {
           <Bell />
         </Button>
 
-        {!user?.isEmailVerified ? (
-          <Badge variant="destructive">Email Unverified</Badge>
-        ) : (
-          ''
-        )}
-
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
@@ -68,7 +66,7 @@ export function Header() {
               size="simple"
             >
               <UserInfo
-                avatarUrl="https://avatars.githubusercontent.com/u/9839363"
+                avatarUrl={avatarUrl}
                 name={user?.profile?.fullName || 'Anonymous'}
                 email={user?.email || ''}
               />

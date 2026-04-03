@@ -92,9 +92,9 @@ export const recipeCardDifficultBadgeVariants = cva(
   {
     variants: {
       tone: {
-        easy: 'bg-emerald-100 text-emerald-600',
-        medium: 'bg-amber-100 text-amber-600',
-        hard: 'bg-red-100 text-red-500'
+        EASY: 'bg-emerald-100 text-emerald-600',
+        MEDIUM: 'bg-amber-100 text-amber-600',
+        HARD: 'bg-red-100 text-red-500'
       },
       size: {
         default: 'text-base',

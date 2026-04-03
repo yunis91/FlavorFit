@@ -1,10 +1,25 @@
-import { Mail, Mars, User, UserCircle, Venus } from 'lucide-react'
+import {
+  CircleCheck,
+  CircleX,
+  Mail,
+  Mars,
+  User,
+  UserCircle,
+  Venus
+} from 'lucide-react'
 import { Controller, UseFormReturn, useWatch } from 'react-hook-form'
+
+import { useAuth } from '@/features/auth/hooks/useAuth'
 
 import { SelectLabel } from '@/shared/components/custom-ui/SelectLabel'
 import { Input } from '@/shared/components/ui/input'
 import { Label } from '@/shared/components/ui/label'
 import { Textarea } from '@/shared/components/ui/textarea'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from '@/shared/components/ui/tooltip'
 
 import { Gender } from '@/__generated__/graphql'
 
@@ -22,6 +37,8 @@ export function GeneralInfoForm({
     control: form.control,
     name: 'profile.gender'
   })
+
+  const { user } = useAuth()
 
   const GenderIcon = gender === Gender.Female ? Venus : Mars
 
@@ -62,6 +79,29 @@ export function GeneralInfoForm({
               placeholder="Email"
               {...register('email')}
             />
+            {!user?.isEmailVerified ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="absolute top-1.5 right-2 rounded-full bg-red-600 p-1 text-white">
+                    <CircleX size={20} />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Email Unverified</p>
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div className="absolute top-1.5 right-3 rounded-full bg-green-600 p-1 text-white">
+                    <CircleCheck size={20} />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Email verified</p>
+                </TooltipContent>
+              </Tooltip>
+            )}
           </div>
         </div>
 
