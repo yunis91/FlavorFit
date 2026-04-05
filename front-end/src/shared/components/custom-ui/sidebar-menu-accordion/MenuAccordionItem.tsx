@@ -32,7 +32,10 @@ export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
           )}
         >
           <span className="flex items-center gap-2 text-sm font-medium">
-            <item.icon size={22} />
+            <item.icon
+              size={22}
+              className="shrink-0"
+            />
             {item.name}
           </span>
           <ChevronDown className="transition-transform group-data-[state=open]:rotate-180" />

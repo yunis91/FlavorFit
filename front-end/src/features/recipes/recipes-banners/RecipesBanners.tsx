@@ -5,7 +5,7 @@ import { Button } from '@/shared/components/ui/button'
 
 export function RecipesBanners() {
   return (
-    <div className="grid grid-cols-[2.5fr_1fr] gap-5">
+    <div className="mb-4 grid grid-cols-[2.5fr_1fr] gap-6">
       <div className="relative rounded-2xl bg-linear-to-r from-[#8E73F8] to-[#9E86FF] px-8 py-4 text-white">
         <div className="absolute bottom-0 -left-4">
           <Image

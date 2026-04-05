@@ -5,6 +5,7 @@ class PageConfig {
   readonly MEAL_PLANS = this.DASHBOARD + '/meal-plans'
   readonly NUTRITION = this.DASHBOARD + '/nutrition'
   readonly RECIPES = this.DASHBOARD + '/recipes'
+  readonly RECIPE_DETAIL = (slug: string) => this.RECIPES + `/${slug}`
   readonly ANALYTICS = this.DASHBOARD + '/analytics'
   readonly ORDER_GROCERIES = this.DASHBOARD + '/order-groceries'
   readonly FORUM = this.DASHBOARD + '/forum'

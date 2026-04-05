@@ -1,17 +1,19 @@
 import { ChefHat, Eye, Heart } from 'lucide-react'
 
+import { formatCompactNumber } from '@/shared/utils/format-compact-number.util'
+
 import { Difficulty } from '@/__generated__/graphql'
 
 import {
-  recipeCardDifficultBadgeVariants,
+  recipeCardDifficultyBadgeVariants,
   recipeCardFooterVariants
 } from '../styles/recipe-card.styles'
 import { TRecipeCardSize } from '../types/recipe-card.types'
 
 interface Props {
-  views?: number
-  likes?: number
-  difficultyLevel: Difficulty
+  views?: number | null
+  likes?: number | null
+  difficultyLevel?: Difficulty
   size: TRecipeCardSize
 }
 
@@ -21,26 +23,44 @@ export function RecipeCardFooter({
   difficultyLevel,
   size
 }: Props) {
+  // TODO: add views to recipe in back side
+
+  const hatCount =
+    difficultyLevel === Difficulty.Easy
+      ? 1
+      : difficultyLevel === Difficulty.Medium
+        ? 2
+        : 3
+
   return (
     <div className="mt-4 flex items-center justify-between gap-3">
       <div
-        className={recipeCardDifficultBadgeVariants({
+        className={recipeCardDifficultyBadgeVariants({
           tone: difficultyLevel,
           size
         })}
       >
-        <ChefHat className={size === 'sm' ? 'size-3' : 'size-4'} />
-        <span className="capitalize">{difficultyLevel}</span>
+        <span className="flex gap-0.5">
+          {[...Array(hatCount)].map((_, index) => (
+            <ChefHat
+              key={index}
+              className="size-3.5"
+            />
+          ))}
+        </span>
+        {size !== 'sm' && <span className="capitalize">{difficultyLevel}</span>}
       </div>
 
-      <div className={recipeCardFooterVariants({ size })}>
-        <Heart className={size === 'sm' ? 'size-3' : 'size-4'} />
-        <span className="capitalize">{likes}</span>
-      </div>
+      <div className="flex items-center gap-4">
+        <span className={recipeCardFooterVariants({ size })}>
+          <Heart className={size === 'sm' ? 'size-3.5' : 'size-4'} />
+          {formatCompactNumber(likes)}
+        </span>
 
-      <div className={recipeCardFooterVariants({ size })}>
-        <Eye className={size === 'sm' ? 'size-3' : 'size-4'} />
-        <span className="capitalize">{views}</span>
+        <span className={recipeCardFooterVariants({ size })}>
+          <Eye className={size === 'sm' ? 'size-3.5' : 'size-4'} />
+          {formatCompactNumber(views)}
+        </span>
       </div>
     </div>
   )

@@ -1,19 +1,18 @@
 import { LucideIcon } from 'lucide-react'
-import React from 'react'
+
+import { cn } from '@/shared/utils'
 
 interface Props {
   Icon: LucideIcon
   children?: React.ReactNode
+  className?: string
 }
 
-export function HeadingWithIcon({ Icon, children }: Props) {
+export function HeadingWithIcon({ Icon, children, className }: Props) {
   return (
-    <div className="flex items-center gap-2">
-      <Icon
-        size={26}
-        className="opacity-65"
-      />
-      <h2 className="text-xl font-semibold text-[#222222]">{children}</h2>
+    <div className={cn('flex items-center', className)}>
+      <Icon className="mr-1.5 opacity-60" />
+      <h1 className="text-xl font-semibold text-[#222222]">{children}</h1>
     </div>
   )
 }
