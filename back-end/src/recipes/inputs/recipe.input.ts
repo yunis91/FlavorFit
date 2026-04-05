@@ -1,43 +1,68 @@
-import { Field, InputType, Int } from '@nestjs/graphql'
+import { Field, InputType, Int } from "@nestjs/graphql";
 
-import { Difficulty } from '../recipe.enum'
-import { NutritionFactUpdateInput } from './nutrition-fact.input'
-import { RecipeIngredientInput } from './recipe-ingredient.input'
-import { RecipeStepInput } from './step.input'
+import {
+  Cuisine,
+  DietaryPreference,
+  Difficulty,
+  HealthGoal,
+  MealType,
+  SpecialOccasion,
+} from "../recipe.enum";
+import { NutritionFactUpdateInput } from "./nutrition-fact.input";
+import { RecipeIngredientInput } from "./recipe-ingredient.input";
+import { RecipeStepInput } from "./step.input";
 
 @InputType()
 export class RecipeCreateInput {
-	@Field(() => String, { nullable: false })
-	slug!: string
+  @Field(() => String, { nullable: false })
+  slug!: string;
 
-	@Field(() => String, { nullable: false })
-	title!: string
+  @Field(() => String, { nullable: false })
+  title!: string;
 
-	@Field(() => String, { nullable: false })
-	description!: string
+  @Field(() => String, { nullable: false })
+  description!: string;
 
-	@Field(() => Int, { nullable: false })
-	calories!: number
+  @Field(() => String, { nullable: false })
+  image!: string;
 
-	@Field(() => Int, { nullable: false })
-	cookingTime!: number
+  @Field(() => Int, { nullable: false })
+  calories!: number;
 
-	@Field(() => Difficulty, { nullable: false })
-	difficulty!: `${Difficulty}`
+  @Field(() => Int, { nullable: false })
+  cookingTime!: number;
 
-	@Field(() => NutritionFactUpdateInput, {
-		nullable: true
-	})
-	nutritionFact?: NutritionFactUpdateInput
+  @Field(() => Difficulty, { nullable: false })
+  difficulty!: `${Difficulty}`;
 
-	@Field(() => String, { nullable: true })
-	tags?: string[]
+  @Field(() => MealType, { nullable: false })
+  mealType!: `${MealType}`;
 
-	@Field(() => [RecipeStepInput], { nullable: true })
-	recipeSteps?: RecipeStepInput[]
+  @Field(() => DietaryPreference, { nullable: false })
+  dietaryPreference!: `${DietaryPreference}`;
 
-	@Field(() => [RecipeIngredientInput], {
-		nullable: true
-	})
-	ingredients?: RecipeIngredientInput[]
+  @Field(() => HealthGoal, { nullable: false })
+  healthGoal!: `${HealthGoal}`;
+
+  @Field(() => Cuisine, { nullable: false })
+  cuisine!: `${Cuisine}`;
+
+  @Field(() => SpecialOccasion, { nullable: false })
+  specialOccasion!: `${SpecialOccasion}`;
+
+  @Field(() => NutritionFactUpdateInput, {
+    nullable: true,
+  })
+  nutritionFact?: NutritionFactUpdateInput;
+
+  @Field(() => String, { nullable: true })
+  tags?: string[];
+
+  @Field(() => [RecipeStepInput], { nullable: true })
+  recipeSteps?: RecipeStepInput[];
+
+  @Field(() => [RecipeIngredientInput], {
+    nullable: true,
+  })
+  ingredients?: RecipeIngredientInput[];
 }

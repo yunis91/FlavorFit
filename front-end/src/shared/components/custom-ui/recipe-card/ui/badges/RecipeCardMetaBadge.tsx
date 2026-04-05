@@ -12,24 +12,28 @@ interface Props {
 }
 
 export function RecipeCardMetaBadge({ recipe, size }: Props) {
+  const badges = [
+    { label: 'Main dish' },
+    { label: `${recipe.calories}kcal`, Icon: Flame },
+    { label: `${recipe.cookingTime}min`, Icon: Clock4 }
+  ]
+
+  const limit = size === 'sm' ? 2 : 3
+  const visible = badges.slice(0, limit)
+  const hidden = badges.length - limit
+
   return (
     <div className="mt-4 flex items-center gap-2">
-      <RecipeCardBadge size={size}>Main dish</RecipeCardBadge>
-
-      <RecipeCardBadge
-        Icon={Flame}
-        size={size}
-      >
-        {recipe.calories}kcal
-      </RecipeCardBadge>
-      <RecipeCardBadge
-        Icon={Clock4}
-        size={size}
-      >
-        {recipe.cookingTime}min
-      </RecipeCardBadge>
-
-      {/* преоброзовать в массив мета данные "бейджи" и если больще 3х у дефолта и больше 2х у sm то показывать сисло с плюсом в коноце */}
+      {visible.map(({ label, Icon }) => (
+        <RecipeCardBadge
+          key={label}
+          Icon={Icon}
+          size={size}
+        >
+          {label}
+        </RecipeCardBadge>
+      ))}
+      {hidden > 0 && <RecipeCardBadge size={size}>+{hidden}</RecipeCardBadge>}
     </div>
   )
 }
