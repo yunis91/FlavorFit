@@ -6,20 +6,20 @@ import { Input } from '@/shared/components/ui/input'
 import { recipeSidebarMenuData } from './recipe-sidebar-menu.data'
 
 interface Props {
-  filter: string
+  filters: string
   searchTerm: string
   setSearchTerm: (term: string) => void
-  setFilter: (filter: string) => void
+  setFilters: (filters: string) => void
 }
 
 export default function RecipeSidebar({
-  filter,
+  filters,
   searchTerm,
   setSearchTerm,
-  setFilter
+  setFilters
 }: Props) {
   const setActiveFilter = (filter: string) => {
-    setFilter(filter)
+    setFilters(filter)
   }
 
   return (
@@ -40,7 +40,7 @@ export default function RecipeSidebar({
       </div>
       <SidebarMenuAccordion
         data={recipeSidebarMenuData}
-        activeFilter={filter}
+        activeFilter={filters}
         onValueChange={setActiveFilter}
       />
     </div>

@@ -11,7 +11,7 @@ interface Props {
   size: TRecipeCardSize
 }
 
-export function RecipeCardMetaBadge({ recipe, size }: Props) {
+export function RecipeCardMetaBadges({ recipe, size }: Props) {
   const badges = [
     { label: 'Main dish' },
     { label: `${recipe.calories}kcal`, Icon: Flame },

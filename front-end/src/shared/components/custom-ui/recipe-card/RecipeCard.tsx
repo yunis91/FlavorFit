@@ -13,7 +13,7 @@ import {
 import { TRecipeCardSize } from './types/recipe-card.types'
 import { RecipeCardFooter } from './ui/RecipeCardFooter'
 import { RecipeCardImage } from './ui/RecipeCardImage'
-import { RecipeCardMetaBadge } from './ui/badges/RecipeCardMetaBadge'
+import { RecipeCardMetaBadges } from './ui/badges/RecipeCardMetaBadges'
 import { cn } from '@/shared/utils'
 
 interface Props {
@@ -54,7 +54,7 @@ export function RecipeCard({ recipe, size }: Props) {
         {recipe.description}
       </p>
 
-      <RecipeCardMetaBadge
+      <RecipeCardMetaBadges
         recipe={recipe}
         size={size}
       />

@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "mg": "bun prisma migrate dev --name $@ && bun prisma generate"
+    "mg": "bun prisma migrate dev --name $@ && bun prisma generate",
+    "db:seed": "bun seed/recipe.seed.ts"
   },
   "dependencies": {
     "@as-integrations/express5": "^1.1.2",
@@ -60,13 +61,15 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.1",
+    "@types/app-root-path": "^3.1.0",
     "@types/cookie-parser": "^1.4.10",
-    "@types/express": "^5.0.0",
+    "@types/express": "^5.0.6",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^30.0.0",
     "@types/multer": "^2.0.0",
     "@types/node": "^22.10.7",
     "@types/passport-jwt": "^4.0.1",
+    "@types/pg": "^8.16.0",
     "@types/supertest": "^6.0.2",
     "dotenv": "^17.2.3",
     "eslint": "^9.18.0",

@@ -11,6 +11,16 @@ const nextConfig: NextConfig = {
       }
     ]
   },
+  /* редирект с корневой страницы на дашборд */
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: true
+      }
+    ]
+  },
   images: {
     remotePatterns: [
       {

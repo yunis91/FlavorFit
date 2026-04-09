@@ -43,7 +43,7 @@ export const recipeCardTitleVariants = cva(
 )
 
 export const recipeCardDescriptionVariants = cva(
-  'line-clamp-2 text-sm text-black/55',
+  'line-clamp-2 text-sm text-black/55 whitespace-normal',
   {
     variants: {
       size: {
