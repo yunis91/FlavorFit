@@ -50,7 +50,7 @@ export default function RecipesDashboard() {
     }
   })
 
-  const { data: popularRecipes, popularLoading } = useQuery(
+  const { data: popularRecipes, loading: popularLoading } = useQuery(
     GetRecipesDocument,
     {
       variables: {
@@ -65,6 +65,11 @@ export default function RecipesDashboard() {
     }
   )
 
+  const recommended = recommendedRecipes?.recipes || []
+  const popular = popularRecipes?.recipes || []
+
+  const isEmpty = recommended.length === 0 && popular.length === 0
+
   return (
     <div className="grid grid-cols-[1fr_minmax(0,4.5fr)] gap-5">
       <RecipeSidebar
@@ -77,10 +82,12 @@ export default function RecipesDashboard() {
         <RecipesBanners />
         {loading || popularLoading ? (
           <RecipesCatalogLoader />
+        ) : isEmpty ? (
+          <div className="py-10 text-xl text-gray-700">No recipes found.</div>
         ) : (
           <RecipesCatalog
-            recommended={recommendedRecipes?.recipes || []}
-            popular={popularRecipes?.recipes || []}
+            recommended={recommended}
+            popular={popular}
           />
         )}
       </main>

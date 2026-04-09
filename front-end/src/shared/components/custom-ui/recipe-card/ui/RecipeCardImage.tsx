@@ -5,6 +5,8 @@ import { PAGES } from '@/shared/config/page.config'
 
 import { TRecipeCardSize } from '../types/recipe-card.types'
 
+import { cn } from '@/shared/utils'
+
 interface Props {
   image: string
   title: string
@@ -16,12 +18,15 @@ export function RecipeCardImage({ image, title, slug, size }: Props) {
   return (
     <Link
       href={PAGES.RECIPE_DETAIL(slug)}
-      className="relative w-full overflow-hidden rounded-2xl"
+      className="relative w-full"
     >
       <Image
         src={image}
         alt={title}
-        className="object-cover transition-transform duration-200 will-change-transform group-hover:scale-[1.03]"
+        className={cn(
+          'overflow-hidden rounded-xl object-cover transition-transform duration-200 will-change-transform group-hover:scale-[1.03]',
+          size === 'sm' ? 'h-[140px] w-[240px]' : 'h-[160px] w-[300px]'
+        )}
         width={size === 'sm' ? 240 : 300}
         height={size === 'sm' ? 140 : 160}
         draggable={false}

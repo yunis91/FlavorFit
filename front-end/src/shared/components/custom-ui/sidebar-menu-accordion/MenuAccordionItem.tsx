@@ -11,13 +11,17 @@ import { Button } from '../../ui/button'
 import { ISidebarMenuAccordionItem } from './sidebar-menu-accordion.types'
 import { cn } from '@/shared/utils'
 
-interface Props {
-  item: ISidebarMenuAccordionItem
-  activeValue?: string
+interface Props<K extends string = string> {
+  item: ISidebarMenuAccordionItem<K>
+  activeValue?: string | null
   onValueChange?: (value: string) => void
 }
 
-export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
+export function MenuAccordionItem<K extends string>({
+  item,
+  activeValue,
+  onValueChange
+}: Props<K>) {
   return (
     <Collapsible defaultOpen={item.isInitiallyOpen}>
       <CollapsibleTrigger asChild>

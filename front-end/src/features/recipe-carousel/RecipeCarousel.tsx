@@ -12,6 +12,8 @@ import { ScrollArea, ScrollBar } from '@/shared/components/ui/scroll-area'
 
 import { GetRecipesQuery } from '@/__generated__/graphql'
 
+import { cn } from '@/shared/utils'
+
 interface Props {
   Icon: LucideIcon
   title: string
@@ -48,11 +50,15 @@ export function RecipeCarousel({ Icon, title, size, recipes }: Props) {
         <ScrollBar orientation="horizontal" />
       </ScrollArea>*/}
       <Carousel>
-        <CarouselContent>
+        <CarouselContent className="-mx-5 p-5">
           {recipes.map(recipe => (
             <CarouselItem
               key={recipe.slug}
-              className={size === 'sm' ? 'basis-[22%]' : 'basis-[26%]'}
+              className={cn(
+                'group transition-transform duration-300 will-change-transform hover:scale-[1.02]',
+                size === 'sm' ? 'basis-[22%]' : 'basis-[26%]',
+                size === 'sm' ? 'hover:-rotate-3' : 'hover:rotate-3'
+              )}
             >
               <RecipeCard
                 recipe={recipe}

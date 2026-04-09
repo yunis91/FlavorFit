@@ -13,12 +13,12 @@ export const recipeCardVariants = cva('bg-white rounded-2xl', {
 })
 
 export const recipeCardBadgeVariants = cva(
-  'flex items-center gap-1.5 rounded-md bg-gray-200 font-semibold text-black/70 whitespace-nowrap',
+  'flex items-center gap-0.5 rounded-md bg-gray-200 font-semibold text-black/70 whitespace-nowrap',
   {
     variants: {
       size: {
-        default: 'py-1.5 px-3 text-xs',
-        sm: 'py-1.5 px-2.5 text-xs'
+        default: 'py-1 px-2 text-[12px]',
+        sm: 'py-1 px-2 text-[12px]'
       }
     },
     defaultVariants: {

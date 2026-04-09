@@ -13,7 +13,7 @@ interface Props {
 
 export function RecipeCardMetaBadges({ recipe, size }: Props) {
   const badges = [
-    { label: 'Main dish' },
+    { label: `${recipe.mealType}` },
     { label: `${recipe.calories}kcal`, Icon: Flame },
     { label: `${recipe.cookingTime}min`, Icon: Clock4 }
   ]
