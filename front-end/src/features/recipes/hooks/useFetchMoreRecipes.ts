@@ -1,4 +1,6 @@
-import { useCallback } from 'react'
+'use client'
+
+import { useCallback, useState } from 'react'
 
 import {
   GetRecipesQuery,
@@ -20,7 +22,6 @@ interface Props {
   input: RecipesQueryInput
   sort: RecipeSort
   hasMore?: boolean
-  isFetchingMore: boolean
 }
 
 export function useFetchMoreRecipes({
@@ -29,37 +30,46 @@ export function useFetchMoreRecipes({
   setPage,
   input,
   sort,
-  hasMore,
-  isFetchingMore
+  hasMore
 }: Props) {
+  const [isFetchingMore, setIsFetchingMore] = useState(false)
+
   const loadMore = useCallback(async () => {
     if (isFetchingMore || !hasMore) return
 
     const nextPage = page + 1
+    setIsFetchingMore(true)
 
-    await fetchMore({
-      variables: {
-        input: {
-          ...input,
-          page: nextPage,
-          sort
-        }
-      },
-      updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prev
+    try {
+      await fetchMore({
+        variables: {
+          input: {
+            ...input,
+            page: nextPage,
+            sort
+          }
+        },
+        updateQuery: (prev, { fetchMoreResult }) => {
+          if (!fetchMoreResult) return prev
 
-        setPage(nextPage)
+          setPage(nextPage)
 
-        return {
-          ...prev,
-          recipes: {
-            ...fetchMoreResult.recipes,
-            items: [...prev.recipes.items, ...fetchMoreResult.recipes.items]
+          return {
+            ...prev,
+            recipes: {
+              ...fetchMoreResult.recipes,
+              items: [...prev.recipes.items, ...fetchMoreResult.recipes.items]
+            }
           }
         }
-      }
-    })
-  }, [fetchMore, hasMore, page, sort, setPage, input, isFetchingMore])
+      })
+    } finally {
+      setIsFetchingMore(false)
+    }
+  }, [fetchMore, hasMore, input, isFetchingMore, page, setPage, sort])
 
-  return { loadMore }
+  return {
+    loadMore,
+    isFetchingMore
+  }
 }

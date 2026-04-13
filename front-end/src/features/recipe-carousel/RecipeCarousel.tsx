@@ -10,7 +10,6 @@ import {
   CarouselContent,
   CarouselItem
 } from '@/shared/components/ui/carousel'
-import { ScrollArea, ScrollBar } from '@/shared/components/ui/scroll-area'
 
 import { GetRecipesQuery } from '@/__generated__/graphql'
 
@@ -59,26 +58,6 @@ export const RecipeCarousel = memo(function RecipeCarousel({
         {title}
       </HeadingWithIcon>
 
-      {/*<ScrollArea className="whitespace-nowrap">
-        <div className="flex w-max space-x-4 p-5">
-          {recipes.map(recipe => (
-            <div
-              key={recipe.slug}
-              className={cn(
-                'group transition-transform duration-300 will-change-transform hover:scale-[1.02]',
-                size === 'sm' ? 'max-w-60 shrink-0' : 'max-w-80 shrink-0',
-                size === 'sm' ? 'hover:-rotate-3' : 'hover:rotate-3'
-              )}
-            >
-              <RecipeCard
-                recipe={recipe}
-                size={size}
-              />
-            </div>
-          ))}
-        </div>
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea>*/}
       <Carousel setApi={setApi}>
         <CarouselContent className="-mx-5 p-5">
           {recipes.map(recipe => (

@@ -57,7 +57,7 @@ export default function RecipesDashboard() {
     variables: {
       input: {
         ...commonInput,
-        page: recommendedPage,
+        page: 1,
         limit: 4,
         sort: RecipeSort.Recommended
       }
@@ -74,7 +74,7 @@ export default function RecipesDashboard() {
     variables: {
       input: {
         ...commonInput,
-        page: popularPage,
+        page: 1,
         limit: 5,
         sort: RecipeSort.Popular
       }
@@ -91,8 +91,7 @@ export default function RecipesDashboard() {
       limit: 4
     },
     sort: RecipeSort.Recommended,
-    hasMore: recommendedRecipes?.recipes.hasMore,
-    isFetchingMore: recommendedNetworkStatus === NetworkStatus.fetchMore
+    hasMore: recommendedRecipes?.recipes.hasMore
   })
 
   const popularPagination = useFetchMoreRecipes({
@@ -104,8 +103,7 @@ export default function RecipesDashboard() {
       limit: 5
     },
     sort: RecipeSort.Popular,
-    hasMore: popularRecipes?.recipes.hasMore,
-    isFetchingMore: popularNetworkStatus === NetworkStatus.fetchMore
+    hasMore: popularRecipes?.recipes.hasMore
   })
 
   const isInitialLoading =

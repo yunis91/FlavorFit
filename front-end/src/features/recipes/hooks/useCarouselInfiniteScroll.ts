@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 
 import { CarouselApi } from '@/shared/components/ui/carousel'
@@ -8,6 +10,7 @@ interface Props {
   isFetchingMore: boolean
   onLoadMore: () => void | Promise<void>
 }
+
 export function useCarouselInfiniteScroll({
   api,
   hasMore,
@@ -18,7 +21,7 @@ export function useCarouselInfiniteScroll({
     if (!api) return
 
     const checkAndLoadMore = () => {
-      if (!hasMore && isFetchingMore) return
+      if (!hasMore || isFetchingMore) return
 
       const selectedIndex = api.selectedScrollSnap()
       const lastIndex = api.scrollSnapList().length - 1
